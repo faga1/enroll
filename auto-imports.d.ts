@@ -7,6 +7,7 @@ declare global {
   const ElIcon: typeof import('element-plus/es')['ElIcon']
   const ElInput: typeof import('element-plus/es')['ElInput']
   const ElOption: typeof import('element-plus/es')['ElOption']
+  const ElPagination: typeof import('element-plus/es')['ElPagination']
   const ElRadio: typeof import('element-plus/es')['ElRadio']
   const ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
   const ElSelect: typeof import('element-plus/es')['ElSelect']
