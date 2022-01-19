@@ -3,6 +3,7 @@
 </template>
 
 <style>
+@import './commons/el.css';
   *{
     margin: 0;
     padding: 0;
