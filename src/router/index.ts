@@ -8,6 +8,12 @@ import User from '../views/user/user.vue'
 import Fill from '../views/interviewer/fill.vue'
 import Check from '../views/interviewer/check.vue'
 import Change from '../views/interviewer/change.vue'
+import Admin from '../views/admin/admin.vue'
+import Data from '../views/admin/data.vue'
+import InterviewerMag from '../views/admin/interviewerMag.vue'
+import projectMag from '../views/admin/projectMag.vue'
+import ResumeMag from '../views/admin/resumeMag.vue'
+import ChangeInterview from '../views/admin/changeInterview.vue'
 
 const routes: Array<RouteRecordRaw> = [
   { path: '/', component: Welcome },
@@ -24,7 +30,18 @@ const routes: Array<RouteRecordRaw> = [
   { path: '/success', component: Success },
   { path: '/fill', component: Fill },
   { path: '/check', component: Check },
-  { path: '/change', component: Change }
+  { path: '/change', component: Change },
+  { 
+    path: '/admin', 
+    component: Admin,
+    children: [
+      { path: 'data', component: Data },
+      { path: 'interviewerMag', component: InterviewerMag },
+      { path: 'projectMag', component: projectMag },
+      { path: 'resumeMag', component: ResumeMag },
+      { path: 'changeInterview', component: ChangeInterview },
+    ]
+  }
 ];
 
 const router = createRouter({

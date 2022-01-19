@@ -21,6 +21,7 @@ module.exports = {
     'comma-dangle':'off',
     'no-trailing-spaces':'off',
     'space-before-blocks':'off',
-    'import/prefer-default-export':'off'
+    'import/prefer-default-export':'off',
+    "object-curly-newline":"off"
   },
 };
