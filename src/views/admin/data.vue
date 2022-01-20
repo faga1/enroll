@@ -1,13 +1,7 @@
 <template>
     <div>
         <span>筛选条件</span>
-        <el-select v-model="post">
-            <el-option 
-            v-for="item in postList" 
-            :key='item.name' 
-            :label="item.name" 
-            :value="item.name"></el-option>
-        </el-select>
+        <PostSelector init="全部"></PostSelector>
     </div>
     <el-row>
         <el-col :span="12">
@@ -55,14 +49,8 @@
 </template>
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
+import PostSelector from '@/components/postSelector.vue'
 
-const post = ref('全部')
-const postList = reactive([
-    { name: '前端' },
-    { name: '后端' },
-    { name: '产品' },
-    { name: '运营' }
-])
 const deliveryData = reactive([
   { post: '人数', front: '2', pm: 5, end: 2, operate: 3, UI: 7, total: 32 },
   { post: '占比', front: 0.4, pm: 0.2, end: 0.2, operate: 0.1, UI: 0.3, total: 1 },
