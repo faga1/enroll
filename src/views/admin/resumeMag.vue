@@ -2,14 +2,7 @@
     <el-row>
         <el-col :span="3">筛选条件</el-col>
         <el-col :span='5'>
-            <el-select v-model="project">
-                <el-option 
-                    v-for="item in projectList" 
-                    :label="item.label" 
-                    :value="item.value" 
-                    :key="item.value">
-                </el-option>
-            </el-select>
+            <ProjectSelector init="2021秋招(当前)"></ProjectSelector>
         </el-col>
         <el-col :span="5"><PostSelector init="前端" @changePost="changePost"></PostSelector></el-col>
         <el-col :span="5"><el-select></el-select></el-col>
@@ -53,6 +46,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 import PostSelector from '../../components/postSelector.vue'
+import ProjectSelector from '../../components/projectSelector.vue'
 
 const current = ref(0)
 const interviewVis = ref(false)
