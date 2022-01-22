@@ -1,6 +1,6 @@
 <template>
-    <div class="container">
-        <div class="header">
+    <Container class="container">
+        <template #header>
             <div><el-button type="primary">添加面试官</el-button></div>
             <div>
                 <span>筛选</span>
@@ -21,8 +21,8 @@
             <div>
                 <el-input placeholder="输入搜索内容"></el-input>
             </div>
-        </div>
-        <div class="content">
+        </template>
+        <template #content>
             <el-table :data="interviewerList" border>
                 <el-table-column type="index" />
                 <el-table-column prop="name" label="姓名" />
@@ -40,16 +40,17 @@
                     </template>
                 </el-table-column>
             </el-table>
-        </div>
-        <div class="footer">
+        </template>
+        <template #footer>
             <el-pagination layout="prev, pager, next" :total="50"></el-pagination>
-        </div>
-    </div>
+        </template>
+    </Container>
 </template>
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import ProjectSelector from '../../components/projectSelector.vue'
 import PostSelector from '../../components/postSelector.vue';
+import Container from '../../components/container.vue'
 
 const status = ref('全部')
 const statusList = reactive([
@@ -74,36 +75,7 @@ a{
     margin-right: 10px;
     cursor: pointer;
 }
-.container{
-    width: 80%;
-    margin:100px auto;
-    background-color: rgb(242,242,242);
-    padding:30px 0 0;
-    .header{
-        width: 95%;
-        margin:0 auto;
-        padding-bottom:20px;
-        display: flex;
-        justify-content:space-between;
-        .el-select,.el-input{
-            width: 100px;
-        }
-    }
-    .content{
-        width: 95%;
-        margin:0 auto; 
-        padding:30px;
-        border-bottom:1px solid #000000;
-        border-top:1px solid #000000;
-    }
-    .footer{
-        display: flex;
-        flex-direction: row-reverse;
-        width: 95%;
-        margin:0 auto;
-        .el-pagination{
-            margin:10px 30px;
-        }
-    }
+.el-input,.el-select{
+    width:100px;
 }
 </style>

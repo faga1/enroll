@@ -14,6 +14,7 @@ import InterviewerMag from '../views/admin/interviewerMag.vue'
 import projectMag from '../views/admin/projectMag.vue'
 import ResumeMag from '../views/admin/resumeMag.vue'
 import ChangeInterview from '../views/admin/changeInterview.vue'
+import ResumeTemplate from '../views/admin/resumeTemplate.vue'
 
 const routes: Array<RouteRecordRaw> = [
   { path: '/', component: Welcome },
@@ -40,6 +41,7 @@ const routes: Array<RouteRecordRaw> = [
       { path: 'projectMag', component: projectMag },
       { path: 'resumeMag', component: ResumeMag },
       { path: 'changeInterview', component: ChangeInterview },
+      { path: 'resumeTemplate', component: ResumeTemplate }
     ]
   }
 ];

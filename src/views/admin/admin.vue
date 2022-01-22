@@ -7,7 +7,17 @@
                 <el-menu-item index="1" route="/admin/data">招新数据</el-menu-item>
                 <el-menu-item index="2" route="/admin/resumeMag">简历管理</el-menu-item>
                 <el-menu-item index="3" route="/admin/interviewerMag">面试官管理</el-menu-item>
-                <el-menu-item index="4" route="/admin/changeInterview">面试题/面评更改</el-menu-item>
+                <el-sub-menu index="4">
+                    <template #title>
+                        面试题/面评更改
+                    </template>
+                    <el-menu-item index="4-1" route="/admin/changeInterview">
+                        面评修改
+                    </el-menu-item>
+                    <el-menu-item index="4-2" route="/admin/resumeTemplate">
+                        简历模板修改
+                    </el-menu-item>
+                </el-sub-menu>
                 <el-menu-item index="5" route="/admin/projectMag">项目管理</el-menu-item>
             </el-menu>
         </el-aside>

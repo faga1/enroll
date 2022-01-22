@@ -4,18 +4,22 @@
         <el-col :span='5'>
             <ProjectSelector init="2021秋招(当前)"></ProjectSelector>
         </el-col>
-        <el-col :span="5"><PostSelector init="前端" @changePost="changePost"></PostSelector></el-col>
-        <el-col :span="5"><el-select></el-select></el-col>
+        <el-col :span="3" style="margin:0 40px">
+            <PostSelector init="前端" @changePost="changePost"></PostSelector>
+        </el-col>
+        <el-col :span="3"><el-select></el-select></el-col>
     </el-row>
-    <div class="container">
-        <div class="header"><el-input placeholder="输入搜索内容"></el-input></div>
-        <div class="content">
+    <Container>
+        <template #header>
+            <el-input placeholder="输入搜索内容"></el-input>
+        </template>
+        <template #content>
             <el-table :data="resumeList" border>
                 <el-table-column type="index" label="序号"></el-table-column>
                 <el-table-column prop="time" label="投递时间"></el-table-column>
                 <el-table-column prop="name" label="姓名"></el-table-column>
                 <el-table-column prop="interviewer" label="面试官"></el-table-column>
-                <el-table-column label="操作">
+                <el-table-column label="操作" width="200px">
                     <template #default="scope">
                         <a @click="showResume(scope.$index)">查看简历</a>
                         <a @click="showInterview(scope.$index)">提交面评</a>
@@ -23,9 +27,11 @@
                 </el-table-column>
                 <el-table-column prop="state" label="状态"></el-table-column>
             </el-table>
+        </template>
+        <template #footer>
             <el-pagination layout="prev, pager, next" :total="50"></el-pagination>
-        </div>
-    </div>
+        </template>
+    </Container>
     <el-dialog 
         v-model="resumeVis"
         title="查看简历"
@@ -47,14 +53,11 @@
 import { ref, reactive } from 'vue';
 import PostSelector from '../../components/postSelector.vue'
 import ProjectSelector from '../../components/projectSelector.vue'
+import Container from '../../components/container.vue'
 
 const current = ref(0)
 const interviewVis = ref(false)
 const resumeVis = ref(false)
-const project = ref('20201秋招(当前)')
-const projectList = reactive([
-    { label: '2021秋招(当前)', value: '2021秋招(当前)' }
-])
 const resumeList = reactive([
     { time: '2021.2.8', name: 'lzc', interviewer: 'cyk', state: '等待查看', id: 1, explain: '有过经验' }
 ])
@@ -80,28 +83,10 @@ a{
     cursor: pointer;
     margin-right: 20px;
 }
-.container{
-    background-color: rgb(242,242,242);
-    margin-top: 30px;
-    padding-bottom:50px;
-    .header{
-        width: 95%;
-        height: 50px;
-        margin:0 auto;
-        border-bottom:1px solid #000000;
-        .el-input{
-            margin:10px 80% 0;
-        }
-    }
-    .content{
-        width: 90%;
-        margin:20px auto 0;
-        position: relative;
-        .el-pagination{
-            position:absolute;
-            right:0;
-        }
-    }
+
+.el-input{
+    width:200px;
+    margin-left:auto;
 }
 .el-dialog{
     .userInfo{
