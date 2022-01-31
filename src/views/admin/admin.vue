@@ -2,7 +2,7 @@
     <el-container>
       <el-header>招新管理后台</el-header>
       <el-container>
-        <el-aside width="200px">
+        <el-aside width="20%" style="max-width: 200px!important;min-width: 100px;">
             <el-menu router>
                 <el-menu-item index="1" route="/admin/data">招新数据</el-menu-item>
                 <el-menu-item index="2" route="/admin/resumeMag">简历管理</el-menu-item>

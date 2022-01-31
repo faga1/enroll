@@ -22,6 +22,8 @@ module.exports = {
     'no-trailing-spaces':'off',
     'space-before-blocks':'off',
     'import/prefer-default-export':'off',
-    "object-curly-newline":"off"
+    "object-curly-newline":"off",
+    'no-tabs':'off',
+    'quotes':'off'
   },
 };

@@ -1,69 +1,76 @@
 <template>
-    <div>
+    <div class="deliver">
         <div class="title">为之工作室365天持续招新</div>
-        <div class="postItem"  v-for="(item,index) in postList" :key="item.postName">
-            <div class="postItem-header">
-                <span>{{item.postName}}</span>
+        <div class="stationItem"  v-for="(item,index) in stationList" :key="item.stationName">
+            <div class="stationItem-header">
+                <span>{{item.stationName}}</span>
                 <el-button 
                     @mouseenter="enter(index)"
                     @mouseleave="leave(index)"
                 >岗位要求</el-button>
-                <el-button @click="toResume">投递</el-button>
+                <el-button @click="toResume(index)">投递</el-button>
             </div>
-            <div class="postRequire" v-show="item.visible">{{item.postRequire}}</div>
+            <div class="stationRequire" :style="{maxHeight:item.visible?'200px':'0'}" >
+                <div class="requireContent">{{item.stationRequire}}</div>
+            </div>
         </div>
     </div>
 </template>
-<script setup lang="ts">import { reactive } from 'vue'
+<script setup lang="ts">
+    import { reactive, ref } from 'vue'
     import { useRouter } from 'vue-router'
 
     const router = useRouter()
-    interface post{
-        postName:string,
-        postRequire:string,
-        visible?:boolean
+    interface station{
+        stationName:string,
+        stationRequire:string,
+        visible?:boolean,
     }
-    const postList:post[] = reactive([
+    const stationList:station[] = reactive([
         {
-            postName: '产品',
-            postRequire: '会产品',
+            stationName: '产品',
+            stationRequire: '会产品',
         },
         {
-            postName: '运营',
-            postRequire: '会运营'
+            stationName: '运营',
+            stationRequire: '会运营',
         },
         {
-            postName: '前端',
-            postRequire: '会前端'
+            stationName: '前端',
+            stationRequire: '会前端',
         },
         {
-            postName: '后端',
-            postRequire: '会后端'
+            stationName: '后端',
+            stationRequire: '会后端',
         } 
     ])
     const enter = (index: number) => {
-        postList[index].visible = true
+        stationList[index].visible = true
     }
     const leave = (index: number) => {
-        postList[index].visible = false
+        stationList[index].visible = false
     }
-    const toResume = () => {
-        router.push('/resume')
+    const toResume = (index:number) => {
+        router.push(`/user/resume?station=${stationList[index].stationName}`)
     }
 </script>
 <style lang="less" scoped>
+.deliver{
+    min-height:calc(100vh - 50px);
+    background-image: url('../../assets/welcome.png');
+    background-size:100% 100%;
     .title{
         font-size: 28px;
         color: dodgerblue;
         text-align: center;
     }
-    .postItem{
+    .stationItem{
         margin: 0 auto;
         width:500px;
         padding:20px;
         background-color:gainsboro;
         margin-bottom: 50px;
-       .postItem-header{
+       .stationItem-header{
         
         color:#ffffff;
         position: relative;
@@ -72,8 +79,14 @@
         }
         
        }
-       .postRequire{
-           margin-top: 30px;
+       .stationRequire{
+           transition: max-height .5s;
+           overflow: hidden;
+           .requireContent{
+               padding:30px
+           }
        }
     }
+}
+
 </style>

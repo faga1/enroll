@@ -18,14 +18,15 @@ import ResumeTemplate from '../views/admin/resumeTemplate.vue'
 
 const routes: Array<RouteRecordRaw> = [
   { path: '/', component: Welcome },
-  { path: '/resume', component: Resume },
   { 
     path: '/user', 
     component: User,
     redirect: '/user/delivery',
     children: [
       { path: 'delivery', component: Delivery },
-      { path: 'search', component: Search }
+      { path: 'search', component: Search },
+      { path: 'resume', component: Resume },
+
     ]
   },
   { path: '/success', component: Success },

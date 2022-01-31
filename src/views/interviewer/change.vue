@@ -1,9 +1,9 @@
 <template>
     <div class="title">发送后将停止向您推送面试者消息</div>
-    <div class="container">
-        <div class="header">
+    <Container>
+        <template #header>
             <div class="selector">
-                <span>当前岗位</span>
+                <div>当前岗位</div>
                 <el-select v-model="post">
                     <el-option 
                     v-for="item in postList" 
@@ -12,26 +12,31 @@
                     :value="item.name"></el-option>
                 </el-select>
             </div>
-            
-            <el-input placeholder="请输入想搜索的内容"></el-input>
-        </div>
-        <div class="content">
-            <el-table :data="interviewerList"  border style="width: 80%">
+            <el-input placeholder="输入搜索内容"></el-input>
+        </template>
+        <template #content>
+            <el-table :data="interviewerList"  border >
                 <el-table-column align="center" prop="id" label="序号" />
                 <el-table-column align="center" prop="name" label="姓名" />
                 <el-table-column  align="center" label="操作" class="operations" >
                     <template #default="scope">
-                        <a @click="changeInterviewer(scope.row.id)">发送</a>
+                        <span
+                        @click="changeInterviewer(scope.row.id)" 
+                        style="color:dodgerblue;cursor: pointer;">发送</span>
                     </template>
                    
                 </el-table-column>
             </el-table>
-        </div>
-    </div>
+        </template>
+        <template #footer>
+            <el-pagination layout="prev, pager, next" :total="50"></el-pagination>
+        </template>
+    </Container>
 </template>
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import Container from '../../components/container.vue'
 
 const post = ref('')
 const route = useRoute()
@@ -62,39 +67,18 @@ function changeInterviewer(id: number){
     text-align: center;
     color:dodgerblue;
 }
-.container{
-    margin:20px auto;
-    width: 80vw;
-    min-height: 85vh;
-    background-color:gainsboro;
-    .header{
-        height: 50px;
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:0;
+    .selector{
         display: flex;
         align-items: center;
-        width: 100%;
-        border-bottom: 1px solid #000000;
-        .selector{
-            margin-left: 5vw;
-            .el-select{
-                width: 10vw;
-                .el-input{
-                    width: 10vw!important;
-                }
-            }
-        }
-        .el-input{
-            margin-left: auto;
-            margin-right: 5vw;
-        }
     }
-    .content{
-        .el-table{
-            margin:50px auto;
-        }
-        a{
-            color:dodgerblue;
-            cursor: pointer;
-        }
+    .el-input{
+        width:200px
     }
 }
+    
 </style>

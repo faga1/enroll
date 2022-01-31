@@ -2,15 +2,15 @@
     <Container>
         <template #header>
             <el-button type='primary'>添加项目</el-button>
-            <div>
-                <span>筛选</span>
-                <ProjectSelector init="2021秋招(当前)" style="width:200px"></ProjectSelector>
+            <div class="selector">
+                <div>筛选</div>
+                <ProjectSelector init="2021秋招(当前)" ></ProjectSelector>
             </div>
-            <el-input placeholder="输入搜索内容" style="width:200px"></el-input>
+            <el-input placeholder="输入搜索内容" ></el-input>
         </template>
         <template #content>
             <el-table :data="projectData" border>
-                <el-table-column type="index" label="序号" width="100px"></el-table-column>
+                <el-table-column type="index" label="序号" width="70px"></el-table-column>
                 <el-table-column prop="name" label="项目名称"></el-table-column>
                 <el-table-column prop="count" label="收到简历数"></el-table-column>
                 <el-table-column prop="pass" label="已通过"></el-table-column>
@@ -33,4 +33,14 @@ const projectData = reactive([
 ])
 </script>
 <style lang="less" scoped>
+.selector{
+    display: flex;
+    align-items: center;
+}
+.el-input{
+    width: 200px;
+}
+.el-button{
+    width:70px;
+}
 </style>

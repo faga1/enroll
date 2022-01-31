@@ -1,11 +1,23 @@
 <template>
     <div class="title">面评填写</div>
     <div class="userInfo">姓名/年级/专业</div>
-    <el-input type="textarea"></el-input>
-    <el-button type="primary">通过</el-button>
-    <el-button type="danger">不通过</el-button>
+    <el-input type="textarea" 
+    :autosize="{ minRows: 10, maxRows: 15 }" 
+    resize="none" 
+    v-model="evaluation"></el-input>
+    <el-button type="primary" @click="send(true)">通过</el-button>
+    <el-button type="danger" @click="send(false)">不通过</el-button>
 </template>
 <script setup lang="ts">
+import { ref } from 'vue'
+import { sendInterviewee } from '@/commons/request';
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+const evaluation = ref('')
+function send(isPass:boolean){
+    sendInterviewee(evaluation.value, isPass, route.query.id)
+}
 </script>
 <style lang="less" scoped>
     .title{
@@ -14,6 +26,11 @@
     }
     .userInfo{
         text-align: center;
+    }
+    .el-textarea{
+        width: 300px;
+        display: block;
+        margin:0 auto;
     }
     .el-button{
         display: block;

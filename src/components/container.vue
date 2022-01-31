@@ -17,12 +17,12 @@
     width: 80%;
     margin:100px auto;
     background-color: rgb(242,242,242);
-    padding:30px 0 0;
     .header{
         width: 95%;
+        height: 60px;
         margin:0 auto;
-        padding-bottom:20px;
         display: flex;
+        align-items: center;
         justify-content:space-between;
     }
     .content{
