@@ -20,10 +20,10 @@ jobs:
       - name: build dist
         run: |
           npm install -g yarn
-          yarn install
-          yarn build
-          yarn uninstall less-loader
-          yarn install less-loader@6
+          npm install
+          npm run  build
+          npm uninstall less-loader
+          npm install less-loader@6
 
       - name: upload files to OSS
         uses: fangbinwei/aliyun-oss-website-action@v1
