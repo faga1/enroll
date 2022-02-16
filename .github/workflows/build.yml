@@ -28,6 +28,6 @@ jobs:
         with:
           accessKeyId: ${{ secrets.ACCESS_KEY_ID }}
           accessKeySecret: ${{ secrets.ACCESS_KEY_SECRET }}
-          bucket: lzc-weather-repory
+          bucket: lzc-weather-report
           endpoint: https://oss-cn-beijing.aliyuncs.com
           folder: ./dist
