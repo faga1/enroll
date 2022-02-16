@@ -20,8 +20,8 @@ jobs:
       - name: build dist
         run: |
           npm install
-          npm run  build
           npm i less@4
+          npm run  build
           npm cache clean
 
       - name: upload files to OSS
