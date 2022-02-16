@@ -21,10 +21,7 @@ jobs:
         run: |
           npm install
           npm run  build
-          npm uninstall less-loader
-          npm install less-loader@6
-          npm uninstall sass-loader
-          npm i sass-loader@6
+          npm i less@4
           npm cache clean
 
       - name: upload files to OSS
