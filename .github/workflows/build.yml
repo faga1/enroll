@@ -22,7 +22,7 @@ jobs:
           npm install -g yarn
           yarn install
           yarn build
-      
+          yarn install less
 
       - name: upload files to OSS
         uses: fangbinwei/aliyun-oss-website-action@v1
