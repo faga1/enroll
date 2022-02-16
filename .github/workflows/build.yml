@@ -24,6 +24,8 @@ jobs:
           npm run  build
           npm uninstall less-loader
           npm install less-loader@6
+          npm uninstall sass-loader
+          npm i sass-loader@6
 
       - name: upload files to OSS
         uses: fangbinwei/aliyun-oss-website-action@v1
