@@ -22,7 +22,6 @@ jobs:
           npm install
           npm i less@4
           npm run  build
-          npm cache clean
 
       - name: upload files to OSS
         uses: fangbinwei/aliyun-oss-website-action@v1
