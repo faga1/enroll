@@ -13,13 +13,21 @@
     <el-form-item label="姓名" prop="name" style="display: inline-block;width:33%">
       <el-input v-model="form.name" ></el-input>
    </el-form-item>
-   <el-form-item label="性别" prop="gender" style="display: inline-block;width:33%">
+   <el-form-item 
+    label="性别" 
+    prop="gender" 
+    placeholder="请选择性别" 
+    style="display: inline-block;width:33%">
      <el-select v-model="form.gender" >
        <el-option label="男" :value='1'></el-option>
        <el-option label="女" :value="0"></el-option>
      </el-select>
    </el-form-item> 
-   <el-form-item label="年级" prop="grade" style="display: inline-block;width:33%">
+   <el-form-item 
+    label="年级" 
+    prop="grade" 
+    placeholder="请选择年级" 
+    style="display: inline-block;width:33%">
      <el-select v-model="form.grade">
        <el-option
         v-for="item in gradeList"
@@ -38,35 +46,26 @@
     <el-form-item label="QQ" prop="qq" style="display: inline-block;width:33%">
       <el-input v-model="form.qq" placeholder="非必填"></el-input>
    </el-form-item>
-   <el-form-item label="是否有相关项目/实习经历" prop="hasExperience">
-     <el-radio-group v-model="form.hasExperience" >
-        <el-radio label="没有,想来学习" ></el-radio>
-        <el-radio label="有"></el-radio>
+   <el-form-item label="是否有相关项目/实习经历" prop="hasPractice">
+     <el-radio-group v-model="form.hasPractice" >
+        <el-radio :label="false" >没有,想来学习</el-radio>
+        <el-radio :label="true">有</el-radio>
       </el-radio-group>
    </el-form-item>
-    <el-form-item label="详细描述下你的过往经历吧越详细面试通过的概率越大" v-if="form.hasExperience" prop="experience">
+    <el-form-item label="详细描述下你的过往经历吧越详细面试通过的概率越大" v-if="form.hasPractice!==null" prop="practice">
       <el-input 
-      v-model="form.experience" 
+      v-model="form.practice" 
       type="textarea" 
       :autosize="{ minRows: 5, maxRows: 10 }" resize="none"></el-input>
      
     </el-form-item>
-    <el-form-item v-if="form.hasExperience==='有'" prop="file">
+    <el-form-item v-if="form.hasPractice" prop="file">
       <el-upload 
-        list-type="picture-card"
         multiple
         :drag="true" 
         :before-upload="beforeUpload"
         style="margin:0 auto 40px"
       ><el-icon><plus /></el-icon></el-upload>
-    </el-form-item>
-     <el-form-item label="未来发展意愿" prop="future">
-      <el-radio-group v-model="form.future" >
-        <el-radio label="就业" ></el-radio>
-        <el-radio label="读研"></el-radio>
-        <el-radio label="出国"></el-radio>
-        <el-radio label="不确定"></el-radio>
-      </el-radio-group>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onSubmit">提交</el-button>
@@ -80,8 +79,10 @@ import { Plus } from '@element-plus/icons-vue'
 import type { UploadFile } from 'element-plus/es/components/upload/src/upload.type'
 import { sendResume } from '@/commons/request'
 import { useRouter, useRoute } from 'vue-router'
+import { ElMessage } from 'element-plus'
 
 const router = useRouter()
+
 const route = useRoute()
 const gradeList :string[] = ['大一', '大二', '大三', '大四', '研一', '研二', '研三']
 const formRules = {
@@ -103,39 +104,52 @@ const formRules = {
   phoneNumber: [
     { required: true, message: '请填写电话' }
   ],
-  hasExperience: [
+  hasPractice: [
     { required: true, message: '请选择是否有相关项目/实习经历' }
   ],
-  experience: [
+  practice: [
     { required: true, message: '请填写经历' }
-  ],
-  future: [
-    { required: true, message: '请选择未来发展意愿' }
-  ],
+  ]
 }
+const proFile = ref();
 const formRef = ref()
 const form = reactive({
   messageFrom: '',
   pushInperson: '',
   name: '',
-  gender: null,
+  gender: '',
   grade: '',
   major: '',
   phoneNumber: '',
   qq: '',
-  hasExperience: '',
-  experience: '',
-  future: ''
+  hasPractice: null,
+  practice: '',
 })
 function beforeUpload(file:UploadFile){
-  console.log(file);
+  if (file){
+    console.log(file);
+    proFile.value = file;
+  }
+  return false;
 }
 function onSubmit(){
-  console.log(route.query.station)
   formRef.value.validate((valid: boolean) => {
     if (valid){
-      sendResume(form, route.query.station)
-      router.push('/success')
+      if (!route.query.station){
+        ElMessage.error('参数异常,请重新投递')
+        router.push('/user/delivery')
+      } else {
+        const formData = new FormData()
+        const json = JSON.stringify({ ...form, station: route.query.station as string })
+        console.log(json);
+        formData.append('json', new Blob([json], { type: "application/json" }))
+        if (proFile.value) formData.append('file', proFile.value)
+        sendResume(formData).then((val) => {
+          if (val.code === 1){
+            router.push('/success')
+          }
+        })
+      }
     }
   })
 }

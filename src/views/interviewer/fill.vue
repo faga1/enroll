@@ -12,11 +12,15 @@
 import { ref } from 'vue'
 import { sendInterviewee } from '@/commons/request';
 import { useRoute } from 'vue-router'
+import { ElMessage } from 'element-plus';
 
 const route = useRoute()
 const evaluation = ref('')
-function send(isPass:boolean){
-    sendInterviewee(evaluation.value, isPass, route.query.id)
+async function send(isPass:boolean){
+    const data = await sendInterviewee(evaluation.value, isPass, route.query.id)
+    if (data.code === 1){
+        ElMessage.success('提交成功')
+    }
 }
 </script>
 <style lang="less" scoped>

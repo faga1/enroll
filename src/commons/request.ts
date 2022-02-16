@@ -45,7 +45,7 @@ request.interceptors.response.use((response) => {
     return response
 }, (error) => {
     if (error.response){
-        ElMessage.error(codeMessage[error.response.status])
+        ElMessage.error(codeMessage[error.response.status] || '未知错误')
     } else {
         ElMessage.error('请求异常')
     }
@@ -59,11 +59,11 @@ export async function searchInterviewee(phoneNumber: string): Promise<Data>{
     })
     return data
 }
-export async function sendResume(form:any, station:string):Promise<Data>{
-    const { data } = await request.post('/interviewee', { ...form, station })
-    console.log(data);
+export async function sendResume(formData:any):Promise<Data>{
+    const { data } = await request.post('/interviewee', formData)
     return data
 }
-export async function sendInterviewee(evaluation:string, isPass:boolean, id:number){
+export async function sendInterviewee(evaluation:string, isPass:boolean, id:any):Promise<Data>{
     const { data } = await request.post('/interviewer', { evaluation, isPass, id })
+    return data
 }
