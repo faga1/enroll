@@ -19,13 +19,13 @@ jobs:
 
       - name: build dist
         run: |
-          npm install -g yarn
           npm install
           npm run  build
           npm uninstall less-loader
           npm install less-loader@6
           npm uninstall sass-loader
           npm i sass-loader@6
+          npm cache clean
 
       - name: upload files to OSS
         uses: fangbinwei/aliyun-oss-website-action@v1
