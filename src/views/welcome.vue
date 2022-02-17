@@ -9,7 +9,7 @@
             <div>与互联网大厂工作的大佬面对面交流的机会</div>
             <div>更多等待发掘...</div>
         </div>
-        <el-button @click="toDelivery">加入我们</el-button>
+        <el-button @click="()=>{router.push('/fill')}">加入我们</el-button>
     </div>
 </template>
 <script setup lang="ts">
