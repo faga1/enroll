@@ -7,7 +7,7 @@
         <el-radio label="冬令营/夏令营"></el-radio>
         <el-radio label="其他自媒体"></el-radio>
       </el-radio-group>
-      <span class="interpolate-text">内推</span>
+      <span class="interpolate-text">内推人</span>
       <el-input class="interpolate" v-model="form.pushInperson"></el-input>
    </el-form-item>
     <el-form-item label="姓名" prop="name" style="display: inline-block;width:33%">
