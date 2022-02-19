@@ -1,4 +1,5 @@
 <template>
+    login
     <div>{{Route.query.code}}</div>    
 </template>
 <script setup lang="ts">
