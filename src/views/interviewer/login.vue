@@ -1,5 +1,5 @@
 <template>
-    <div>{{Route.params.code}}</div>    
+    <div>{{Route.query.code}}</div>    
 </template>
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
