@@ -12,5 +12,18 @@ module.exports = {
           resolvers: [ElementPlusResolver()],
         }),
       ],
-    }
+    },
+    devServer: {
+      port: 9000,
+      // proxy: { // 设置代理
+      //     '/api': {
+      //         target: 'http://www.xxxxx.com/',
+      //         changeOrigin: true,
+      //         pathRewrite: {
+      //             '^/api': '/api'
+      //         }
+      //     }
+      // },
+      disableHostCheck: true
+  },
 }
