@@ -14,7 +14,7 @@ module.exports = {
       ],
     },
     devServer: {
-      port: 9000,
+      port: 8080,
       // proxy: { // 设置代理
       //     '/api': {
       //         target: 'http://www.xxxxx.com/',

@@ -15,7 +15,7 @@ import { useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus';
 
 onMounted(() => {
-    window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wwe0d87bd068758439&redirect_uri=${encodeURIComponent('http://weather-report.xdwizz.top/#/login')}&response_type=code&scope=snsapi_base#wechat_redirect`
+    window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wwe0d87bd068758439&redirect_uri=${encodeURIComponent('http://http://weather-report.xdwizz.top/login')}&response_type=code&scope=snsapi_base#wechat_redirect`
 })
 const route = useRoute()
 const evaluation = ref('')
