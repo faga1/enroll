@@ -46,7 +46,7 @@ const routes: Array<RouteRecordRaw> = [
       { path: 'resumeTemplate', component: ResumeTemplate }
     ]
   },
-  { path: '/login/:code', component: Login }
+  { path: '/login', component: Login }
 ];
 
 const router = createRouter({
