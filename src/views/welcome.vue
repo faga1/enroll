@@ -13,16 +13,13 @@
     </div>
 </template>
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import { useRouter } from 'vue-router' 
 
 const router = useRouter()
 function toDelivery(){
     router.push('/user')
 }
-onMounted(() => {
-    window.open("chrome://version")
-})
+
 </script>
 
 <style lang="less" scoped>

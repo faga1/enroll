@@ -12,8 +12,8 @@
     
 </template>
 <script setup lang="ts">
-import { searchInterviewee } from '@/commons/request';
 import { ref } from 'vue';
+import { searchInterviewee } from '../../commons/request';
 
 const statusVis = ref(false)
 const phoneNumber = ref('')

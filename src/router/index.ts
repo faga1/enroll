@@ -16,6 +16,7 @@ import ResumeMag from '../views/admin/resumeMag.vue'
 import ChangeInterview from '../views/admin/changeInterview.vue'
 import ResumeTemplate from '../views/admin/resumeTemplate.vue'
 import Login from '../views/interviewer/login.vue'
+import Interviewer from '../views/interviewer.vue'
 
 const routes: Array<RouteRecordRaw> = [
   { path: '/', component: Welcome },
@@ -28,6 +29,17 @@ const routes: Array<RouteRecordRaw> = [
       { path: 'search', component: Search },
       { path: 'resume', component: Resume },
 
+    ]
+  },
+  { 
+    path: '/interviewer', 
+    component: Interviewer,
+    children: [
+      { path: 'success', component: Success },
+      { path: 'fill', component: Fill },
+      { path: 'check', component: Check },
+      { path: 'change', component: Change },
+      { path: '/login', component: Login }
     ]
   },
   { path: '/success', component: Success },
@@ -46,7 +58,6 @@ const routes: Array<RouteRecordRaw> = [
       { path: 'resumeTemplate', component: ResumeTemplate }
     ]
   },
-  { path: '/login', component: Login }
 ];
 
 const router = createRouter({

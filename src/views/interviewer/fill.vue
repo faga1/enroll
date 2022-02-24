@@ -9,14 +9,11 @@
     <el-button type="danger" @click="send(false)">不通过</el-button>
 </template>
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { sendInterviewee } from '@/commons/request';
+import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus';
+import { sendInterviewee } from '../../commons/request/index';
 
-onMounted(() => {
-    window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wwe0d87bd068758439&redirect_uri=${encodeURIComponent('http://weather-report.xdwizz.top/#/login')}&response_type=code&scope=snsapi_base#wechat_redirect`
-})
 const route = useRoute()
 const evaluation = ref('')
 async function send(isPass:boolean){

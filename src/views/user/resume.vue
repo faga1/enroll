@@ -77,9 +77,9 @@
 import { reactive, ref } from 'vue'
 import { Plus } from '@element-plus/icons-vue'
 import type { UploadFile } from 'element-plus/es/components/upload/src/upload.type'
-import { sendResume } from '@/commons/request'
 import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
+import { sendResume } from '../../commons/request'
 
 const router = useRouter()
 

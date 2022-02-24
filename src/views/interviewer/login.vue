@@ -4,7 +4,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { interviewerLogin } from '../../commons/request'
+import { interviewerLogin } from '../../commons/request/index'
 
 const router = useRouter()
 function getQueryString(name:string) {
@@ -19,7 +19,7 @@ onMounted(() => {
   const code = getQueryString('code')
   if (typeof code === 'string'){
     interviewerLogin(code).then((val) => {
-      if (val.code === 1){
+      if (val.code === 1 && val.data){
         window.localStorage.setItem('token', val.data)
         router.go(-2)
       }
