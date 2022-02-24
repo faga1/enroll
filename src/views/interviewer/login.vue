@@ -1,11 +1,10 @@
 <template>
-    login
-    <div>{{code}}</div>
+  <div></div>
 </template>
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
+import { interviewerLogin } from '../../commons/request'
 
-const code = ref()
 function getQueryString(name:string) {
   const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`, 'i');
   const result = window.location.search.substring(1).match(reg);
@@ -15,7 +14,12 @@ function getQueryString(name:string) {
   return null;
 }
 onMounted(() => {
-    code.value = getQueryString('code')
+  const code = getQueryString('code')
+  if (typeof code === 'string'){
+    interviewerLogin(code).then((val) => {
+      window.localStorage.setItem('token', val.data)
+    })
+  }
 })
 
 </script>

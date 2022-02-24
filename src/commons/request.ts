@@ -67,3 +67,9 @@ export async function sendInterviewee(evaluation:string, isPass:boolean, id:any)
     const { data } = await request.post('/interviewer', { evaluation, isPass, id })
     return data
 }
+export async function interviewerLogin(code:string):Promise<Data>{
+    const { data } = await request.get('/WXLogin', {
+        params: { code }
+    })
+    return data;
+}
