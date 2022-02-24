@@ -1,11 +1,12 @@
 <template>
-  <div></div>
+  <div>{{token}}</div>
 </template>
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { interviewerLogin } from '../../commons/request'
 
+const token = ref<string>('')
 const router = useRouter()
 function getQueryString(name:string) {
   const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`, 'i');
@@ -21,7 +22,8 @@ onMounted(() => {
     interviewerLogin(code).then((val) => {
       if (val.code === 1){
         window.localStorage.setItem('token', val.data)
-        router.go(-2)
+        token.value = val.data
+        // router.go(-2)
       }
     })
   }
