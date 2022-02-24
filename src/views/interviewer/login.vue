@@ -3,8 +3,10 @@
 </template>
 <script setup lang="ts">
 import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { interviewerLogin } from '../../commons/request'
 
+const router = useRouter()
 function getQueryString(name:string) {
   const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`, 'i');
   const result = window.location.search.substring(1).match(reg);
@@ -17,7 +19,10 @@ onMounted(() => {
   const code = getQueryString('code')
   if (typeof code === 'string'){
     interviewerLogin(code).then((val) => {
-      window.localStorage.setItem('token', val.data)
+      if (val.code === 1){
+        window.localStorage.setItem('token', val.data)
+        router.go(-2)
+      }
     })
   }
 })
