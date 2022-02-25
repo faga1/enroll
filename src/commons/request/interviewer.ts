@@ -36,9 +36,11 @@ request.interceptors.request.use((config) => {
     if (window.localStorage.getItem('token') && config1.headers){
         config1.headers.Authorization = window.localStorage.getItem('token') as string;
     }
+    console.log(JSON.stringify(config1));
     return config1
 })
 request.interceptors.response.use((response) => {
+    console.log(JSON.stringify(response));
     if (response.status !== 200){
         ElMessage.error(codeMessage[response.status])
         return response;

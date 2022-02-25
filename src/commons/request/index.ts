@@ -30,12 +30,12 @@ const codeMessage:message = {
 const request = axios.create({
     baseURL: 'http://4c7705577i.picp.vip',
 })
-// request.interceptors.request.use((config) => {
-//     // console.log(config);
-//     return config
-// })
+request.interceptors.request.use((config) => {
+    console.log(JSON.stringify(config));
+    return config
+})
 request.interceptors.response.use((response) => {
-    console.log(response);
+    console.log(JSON.stringify(response));
     if (response.status !== 200){
         // ElMessage.error(codeMessage[response.status])
     }
