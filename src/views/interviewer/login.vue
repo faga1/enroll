@@ -26,13 +26,14 @@ onMounted(() => {
     background: 'rgba(0, 0, 0, 0.7)',
   })
   const code = getQueryString('code')
+  const route = getQueryString('state')
   if (typeof code === 'string'){
     interviewerLogin(code).then((val) => {
       if (val.code === 1 && val.data){
         window.localStorage.setItem('token', val.data)
-        ElMessage.success('授权失败')
+        ElMessage.success('授权成功')
         loading.close()
-        router.push('/interviewer/check')
+        router.push(route as string)
       }
     })
   }
