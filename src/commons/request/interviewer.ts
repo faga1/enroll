@@ -44,7 +44,7 @@ request.interceptors.response.use((response) => {
     }
 
     if (response.data.code !== 1){
-        if (response.data.code === 11){
+        if (response.data.code === 2){
             window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wwe0d87bd068758439&redirect_uri=${encodeURIComponent('http://weather-report.xdwizz.top/#/interviewer/login')}&response_type=code&scope=snsapi_base#wechat_redirect`
         }
         ElMessage.error(response.data.message)

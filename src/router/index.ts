@@ -39,9 +39,9 @@ const routes: Array<RouteRecordRaw> = [
       { path: 'fill', component: Fill },
       { path: 'check', component: Check },
       { path: 'change', component: Change },
-      { path: '/login', component: Login }
     ]
   },
+  { path: '/login', component: Login },
   { path: '/success', component: Success },
   { path: '/fill', component: Fill },
   { path: '/check', component: Check },
