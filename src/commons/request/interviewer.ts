@@ -32,10 +32,11 @@ const request = axios.create({
 })
 request.interceptors.request.use((config) => {
     // console.log(config);
-    if (window.localStorage.getItem('token') && config.headers){
-        config.headers.Authorization = window.localStorage.getItem('token') as string;
+    const config1 = config
+    if (window.localStorage.getItem('token') && config1.headers){
+        config1.headers.Authorization = window.localStorage.getItem('token') as string;
     }
-    return config
+    return config1
 })
 request.interceptors.response.use((response) => {
     if (response.status !== 200){
@@ -59,3 +60,7 @@ request.interceptors.response.use((response) => {
     }
     return Promise.reject(error)
 })
+export async function getResumeList(current:number, size:number):Promise<Data>{
+    const { data } = await request.get(`/interviewer/${current}/${size}`)
+    return data;
+}

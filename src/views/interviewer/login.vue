@@ -1,10 +1,14 @@
 <template>
-  <div>123</div>
+  <div>
+    
+  </div>
 </template>
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { ElLoading, ElMessage } from 'element-plus';
 import { interviewerLogin } from '../../commons/request/index'
+import 'element-plus/theme-chalk/el-loading.css'
 
 const router = useRouter()
 function getQueryString(name:string) {
@@ -16,12 +20,17 @@ function getQueryString(name:string) {
   return null;
 }
 onMounted(() => {
+  ElLoading.service({
+    lock: true,
+    text: '正在授权...',
+    background: 'rgba(0, 0, 0, 0.7)',
+  })
   const code = getQueryString('code')
   if (typeof code === 'string'){
     interviewerLogin(code).then((val) => {
       if (val.code === 1 && val.data){
         window.localStorage.setItem('token', val.data)
-        router.go(-2)
+        ElMessage.success('授权成功')
       }
     })
   }

@@ -36,18 +36,16 @@
     </div>
 </template>
 <script setup lang="ts">
-    import { reactive, ref } from 'vue';
+    import { onMounted, reactive, ref } from 'vue';
+    import { getResumeList } from '@/commons/request/interviewer';
 
     const mode = ref('')
-    const userList = reactive([
-            { 
-                name: 'lzc', 
-                grade: '大一', 
-                experience: '有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验有一点实习经验',
-                visible: false,
-                id: 1
-            }
-    ])
+    const userList = ref()
+    onMounted(() => {
+        getResumeList(1, 1).then((val) => {
+            userList.value = val.data.records
+        })
+    })
     function read(id: number):void{
         console.log(id);
     }
