@@ -31,6 +31,7 @@ onMounted(() => {
       if (val.code === 1 && val.data){
         window.localStorage.setItem('token', val.data)
         ElMessage.success('授权成功')
+        router.go(-2)
       }
     })
   }
