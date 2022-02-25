@@ -20,7 +20,7 @@ function getQueryString(name:string) {
   return null;
 }
 onMounted(() => {
-  ElLoading.service({
+  const loading = ElLoading.service({
     lock: true,
     text: '正在授权...',
     background: 'rgba(0, 0, 0, 0.7)',
@@ -30,8 +30,9 @@ onMounted(() => {
     interviewerLogin(code).then((val) => {
       if (val.code === 1 && val.data){
         window.localStorage.setItem('token', val.data)
-        ElMessage.success('授权成功')
-        router.go(-2)
+        ElMessage.success('授权失败')
+        loading.close()
+        router.push('/interviewer/check')
       }
     })
   }

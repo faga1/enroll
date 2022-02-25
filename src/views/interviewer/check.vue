@@ -38,7 +38,9 @@
 <script setup lang="ts">
     import { onMounted, reactive, ref } from 'vue';
     import { getResumeList } from '@/commons/request/interviewer';
+    import { useRouter } from 'vue-router';
 
+    const router = useRouter()
     const mode = ref('')
     const userList = ref()
     onMounted(() => {
@@ -50,6 +52,7 @@
         console.log(id);
     }
     function pageChange(page:any){
+        router.push('/login')
         console.log(page);
     }
 </script>

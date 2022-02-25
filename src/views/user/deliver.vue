@@ -17,7 +17,7 @@
     </div>
 </template>
 <script setup lang="ts">
-    import { reactive, ref } from 'vue'
+    import { reactive, ref, onMounted } from 'vue'
     import { useRouter } from 'vue-router'
 
     const router = useRouter()
@@ -26,6 +26,9 @@
         stationRequire:string,
         visible?:boolean,
     }
+    onMounted(() => {
+        router.go(-1)
+    })
     const stationList:station[] = reactive([
         {
             stationName: '产品',
