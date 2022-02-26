@@ -36,7 +36,7 @@
     </div>
 </template>
 <script setup lang="ts">
-    import { onMounted, reactive, ref } from 'vue';
+    import { onMounted, ref } from 'vue';
     import { getResumeList } from '@/commons/request/interviewer';
     import { useRouter } from 'vue-router';
 
@@ -52,7 +52,6 @@
         console.log(id);
     }
     function pageChange(page:any){
-        router.push('/login')
         console.log(page);
     }
 </script>
