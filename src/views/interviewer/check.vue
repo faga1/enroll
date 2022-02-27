@@ -37,22 +37,32 @@
 </template>
 <script setup lang="ts">
     import { onMounted, ref } from 'vue';
-    import { getResumeList } from '@/commons/request/interviewer';
+    import { getResume } from '@/commons/request/interviewer';
     import { useRouter } from 'vue-router';
 
     const router = useRouter()
     const mode = ref('')
     const userList = ref()
+    const current = ref<number>(1)
+    const size = ref<number>(5)
+    const total = ref<number>(5)
+    function getResumeList(page:number = current.value){
+        getResume(page, size.value).then((val) => {
+            userList.value = val.data.records
+            total.value = val.data.total
+        })
+    }
     onMounted(() => {
-        getResumeList(1, 1).then((val) => {
+        getResume(1, 1).then((val) => {
             userList.value = val.data.records
         })
     })
     function read(id: number):void{
         console.log(id);
     }
-    function pageChange(page:any){
-        console.log(page);
+    function pageChange(page:number){
+        current.value = page;
+       getResumeList(page)
     }
 </script>
 <style lang="less" scoped>
