@@ -50,6 +50,7 @@ request.interceptors.response.use((response) => {
 
     if (response.data.code !== 1){
         if (response.data.code === 2){
+            ElMessage.error(response.data.code)
             window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wwe0d87bd068758439&redirect_uri=${encodeURIComponent('http://weather-report.xdwizz.top/#/login')}&response_type=code&scope=snsapi_base&state=${route.path}#wechat_redirect`
         }
         ElMessage.error(response.data.message)
@@ -57,6 +58,7 @@ request.interceptors.response.use((response) => {
     }
     return response
 }, (error) => {
+    console.log(error);
     if (error.response){
         ElMessage.error(codeMessage[error.response.status] || '未知错误')
     } else {

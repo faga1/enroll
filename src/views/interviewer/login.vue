@@ -33,7 +33,7 @@ onMounted(() => {
         window.localStorage.setItem('token', val.data)
         ElMessage.success('授权成功')
         loading.close()
-        router.push(route as string)
+        router.replace(route as string)
       }
     })
   }
