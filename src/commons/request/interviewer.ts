@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
-import { useRoute } from 'vue-router'
 
 interface Data{
     success:boolean,
@@ -28,7 +27,6 @@ const codeMessage:message = {
 	503: "服务不可用，服务器暂时过载或维护。",
 	504: "网关超时。",
 };
-const route = useRoute()
 const request = axios.create({
     baseURL: 'http://4c7705577i.picp.vip',
 })
@@ -50,15 +48,10 @@ request.interceptors.response.use((response) => {
 
     if (response.data.code !== "1"){
         if (response.data.code === "2" || response.data.code === "4"){
-            console.log('进来了');
-            ElMessage.success('进来了')
-            window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wwe0d87bd068758439&redirect_uri=${encodeURIComponent('http://weather-report.xdwizz.top/#/login')}&response_type=code&scope=snsapi_base&state=${route.path}#wechat_redirect`
+            window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wwe0d87bd068758439&redirect_uri=${encodeURIComponent('http://weather-report.xdwizz.top/#/login')}&response_type=code&scope=snsapi_base&state=${window.location.hash.split('#')[1]}#wechat_redirect`
         }
-        ElMessage.error('进来了一般')
-        ElMessage.error(response.data.message)
         return response;
     }
-    ElMessage.error('没进来')
     return response
 }, (error) => {
     console.log(error);
