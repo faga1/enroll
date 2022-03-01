@@ -73,3 +73,7 @@ export async function interviewerLogin(code:string):Promise<Data>{
     })
     return data;
 }
+export async function getStation():Promise<Data>{
+    const { data } = await request.get('/administrator/station')
+    return data;
+}

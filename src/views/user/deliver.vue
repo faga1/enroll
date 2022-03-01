@@ -1,57 +1,53 @@
 <template>
     <div class="deliver">
         <div class="title">为之工作室365天持续招新</div>
-        <div class="stationItem"  v-for="(item,index) in stationList" :key="item.stationName">
+        <div class="stationItem"  v-for="(item,index) in stationList" :key="item.name">
             <div class="stationItem-header">
-                <span>{{item.stationName}}</span>
+                <span>{{item.name}}</span>
                 <el-button 
+                    class="requireBtn"
                     @mouseenter="enter(index)"
                     @mouseleave="leave(index)"
                 >岗位要求</el-button>
                 <el-button @click="toResume(index)">投递</el-button>
             </div>
-            <div class="stationRequire" :style="{maxHeight:item.visible?'200px':'0'}" >
-                <div class="requireContent">{{item.stationRequire}}</div>
+            <div 
+            class="stationRequire" 
+            :style="{maxHeight:item.visible?'200px':'0'}" 
+            >
+                <el-input type="textarea" 
+                    disabled
+                    class="requireContent"
+                    v-model="item.desc"></el-input>
             </div>
         </div>
     </div>
 </template>
 <script setup lang="ts">
-    import { reactive } from 'vue'
+    import { ref, onMounted } from 'vue'
     import { useRouter } from 'vue-router'
+    import { getStation } from '../../commons/request'
 
     const router = useRouter()
     interface station{
-        stationName:string,
-        stationRequire:string,
-        visible?:boolean,
+        name:string,
+        desc:string,
+        visible?:boolean
     }
-    const stationList:station[] = reactive([
-        {
-            stationName: '产品',
-            stationRequire: '会产品',
-        },
-        {
-            stationName: '运营',
-            stationRequire: '会运营',
-        },
-        {
-            stationName: '前端',
-            stationRequire: '会前端',
-        },
-        {
-            stationName: '后端',
-            stationRequire: '会后端',
-        } 
-    ])
+    const stationList = ref<station[]>([])
+    onMounted(() => {
+        getStation().then((val) => {
+            if (val.code === 1) stationList.value = val.data
+        })
+    })
     const enter = (index: number) => {
-        stationList[index].visible = true
+        stationList.value[index].visible = true
     }
     const leave = (index: number) => {
-        stationList[index].visible = false
+        stationList.value[index].visible = false
     }
     const toResume = (index:number) => {
-        router.push(`/user/resume?station=${stationList[index].stationName}`)
+        router.push(`/user/resume?station=${stationList.value[index].name}`)
     }
 </script>
 <style lang="less" scoped>
@@ -60,33 +56,58 @@
     background-image: url('../../assets/welcome.png');
     background-size:100% 100%;
     .title{
-        font-size: 28px;
         color: dodgerblue;
         text-align: center;
+        margin:20px 0;
     }
     .stationItem{
+        width:80%;
         margin: 0 auto;
-        width:500px;
         padding:20px;
         background-color:gainsboro;
         margin-bottom: 50px;
        .stationItem-header{
-        
-        color:#ffffff;
-        position: relative;
-        span{
-            margin-right: 150px;
-        }
-        
+            display: flex;
+            color:#ffffff;
+            position: relative;
+            .requireBtn{
+                margin-left:auto;
+                
+            }
+            
        }
        .stationRequire{
            transition: max-height .5s;
            overflow: hidden;
            .requireContent{
-               padding:30px
+               padding-top:20px
            }
+           .requireContent /deep/ .el-textarea__inner {
+                color: #000000 !important;
+                background-color:#ffffff;
+            }
        }
     }
 }
-
+@media (min-width:0px){
+        .title{font-size:12px;}
+        
+    }
+    @media (min-width: 320px){
+        .title{font-size:15px;}
+    }
+    @media (min-width: 340px){
+        .title{font-size:16px;}
+    }
+    @media (min-width: 360px){
+        .title{font-size:18px;}
+    }
+    @media (min-width: 380px){
+        .title{font-size:20px;}
+    }
+    
+    @media (min-width: 535px){
+        .title{font-size:25px;}
+        .stationItem{width: 500px !important;}
+    }
 </style>

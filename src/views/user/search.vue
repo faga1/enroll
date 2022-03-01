@@ -18,11 +18,18 @@ import { searchInterviewee } from '../../commons/request';
 const statusVis = ref(false)
 const phoneNumber = ref('')
 const statusCode = ref('')
+const map = new Map([
+    [1, '待查看'],
+    [2, '已读'],
+    [3, '通过'],
+    [4, '未通过'],
+    [5, '状态异常']
+])
 async function getStatus(Number: string){
     statusVis.value = true
     const data = await searchInterviewee(Number)
     if (data.code === 1){
-        statusCode.value = data.data
+        statusCode.value = map.get(data.data) ? map.get(data.data) : '状态异常'
     } else {
         statusCode.value = data.message
     }
@@ -38,11 +45,11 @@ async function getStatus(Number: string){
 .search{
     width:50vw;
     margin:100px auto;
+    
     .label{
-        font-size: 25px;
+        text-align: center;
     }
     .el-input{
-        width: 400px;
         margin:20px auto;
         display: block;
     }
@@ -54,8 +61,34 @@ async function getStatus(Number: string){
     }
     .status{
         margin-top:150px;
+        text-align: center;
         font-weight: 600;
     }
 }
-
+@media (min-width:0px){
+        .label{font-size:12px;}
+        
+    }
+    @media (min-width: 320px){
+        .label{font-size:16px;}
+    }
+    
+    @media (min-width: 360px){
+        .label{font-size:18px;}
+    }
+    @media (min-width: 380px){
+        .label{font-size:20px;}
+    }
+    @media (max-width: 450px){
+        .search{width:90vw}
+        .el-input{
+            width:80%
+        }
+    }
+    @media (min-width: 550px){
+        .label{font-size:25px;}
+        .el-input{
+            width:300px;
+        }
+    }
 </style>

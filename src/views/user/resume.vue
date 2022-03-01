@@ -1,14 +1,23 @@
 <template>
   <div class="title">完善信息</div>
-  <el-form :rules="formRules" ref="formRef" :model="form" label-width="120px" label-position="top" >
+  <el-form 
+  :show-file-list="true" 
+  :rules="formRules" 
+  ref="formRef" 
+  :model="form" 
+  label-width="120px" 
+  label-position="top" >
    <el-form-item label="从哪里了解到我们" prop="messageFrom">
      <el-radio-group v-model="form.messageFrom">
         <el-radio label="海报" ></el-radio>
         <el-radio label="冬令营/夏令营"></el-radio>
         <el-radio label="其他自媒体"></el-radio>
       </el-radio-group>
-      <span class="interpolate-text">内推人</span>
-      <el-input class="interpolate" v-model="form.pushInperson"></el-input>
+      <div class="pushIn">
+        <span class="interpolate-text">内推人</span>
+        <el-input class="interpolate" v-model="form.pushInperson"></el-input>
+      </div>
+      
    </el-form-item>
     <el-form-item label="姓名" prop="name" style="display: inline-block;width:33%">
       <el-input v-model="form.name" ></el-input>
@@ -60,12 +69,13 @@
      
     </el-form-item>
     <el-form-item v-if="form.hasPractice" prop="file">
-      <el-upload 
+      <el-upload
         multiple
         :drag="true" 
         :before-upload="beforeUpload"
         style="margin:0 auto 40px"
-      ><el-icon><plus /></el-icon></el-upload>
+        :file-list="fileList"
+      >上传作品</el-upload>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onSubmit">提交</el-button>
@@ -102,7 +112,8 @@ const formRules = {
     { required: true, message: '请填写学院和专业' }
   ],
   phoneNumber: [
-    { required: true, message: '请填写电话' }
+    { required: true, message: '请填写电话' },
+    { pattern: /^1[3456789]\d{9}$/, message: '请输入正确的手机号', trigger: 'blur' }
   ],
   hasPractice: [
     { required: true, message: '请选择是否有相关项目/实习经历' }
@@ -112,6 +123,7 @@ const formRules = {
   ]
 }
 const proFile = ref();
+const fileList = ref([])
 const formRef = ref()
 const form = reactive({
   messageFrom: '',
@@ -127,8 +139,8 @@ const form = reactive({
 })
 function beforeUpload(file:UploadFile){
   if (file){
-    console.log(file);
-    proFile.value = file;
+    fileList.value.push({ name: file.name })
+    console.log(fileList.value[0].name);
   }
   return false;
 }
@@ -141,7 +153,6 @@ function onSubmit(){
       } else {
         const formData = new FormData()
         const json = JSON.stringify({ ...form, station: route.query.station as string })
-        console.log(json);
         formData.append('json', new Blob([json], { type: "application/json" }))
         if (proFile.value) formData.append('file', proFile.value)
         sendResume(formData).then((val) => {
@@ -160,16 +171,24 @@ function onSubmit(){
   font-weight: 600;
   text-align: center;
 }
-.interpolate-text{
+.pushIn{
+  display: inline-block;
   margin-left:auto;
 
 }
 
 .el-form{
-  width: 60vw;
+  width: 70vw;
   margin:60px auto;
   .el-input{
-    width:10vw;
+    max-width: 180px;
+  }
+  .el-upload-dragger{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:20px;
+    color:#ccc;
   }
   .el-radio{
     margin-right: 150px;
@@ -182,6 +201,11 @@ function onSubmit(){
     height: 40px;
     display: block;
     margin:10px auto;
+  }
+}
+@media (max-width:500px){
+  .el-form{
+    width:90%;
   }
 }
 </style>

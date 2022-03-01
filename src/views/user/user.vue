@@ -25,11 +25,29 @@
         a{
             text-decoration: none;
             color: #000000;
-            font-size: 25px;
             font-weight: 600;
             margin-right: 30px;
         }
     }
 }
-
+@media (min-width:0px){
+        .header{font-size:12px;}
+        
+    }
+    @media (min-width: 320px){
+        .header{font-size:15px;}
+    }
+    @media (min-width: 340px){
+        .header{font-size:16px;}
+    }
+    @media (min-width: 360px){
+        .header{font-size:18px;}
+    }
+    @media (min-width: 380px){
+        .header{font-size:20px;}
+    }
+    
+    @media (min-width: 535px){
+        .header{font-size:25px;}
+    }
 </style>

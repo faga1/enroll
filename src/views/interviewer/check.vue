@@ -1,7 +1,6 @@
 <template>
     <div class="container">
         <div class="header">
-            <el-input placeholder="请输入要搜索的内容"></el-input>
             <el-select v-model="mode" placeholder="未读" >
                 <el-option label="未读" value="未读"></el-option>
                 <el-option label="已读" value="已读"></el-option>
@@ -10,13 +9,13 @@
             </el-select>
         </div>
         <div class="userList" >
-            <div class="userItem" v-for="item in userList" :key="item.id">
+            <div class="userItem" v-for="item in userList" :key="item.resumeId">
                 <div class="itemInfo">
                     <div>{{item.name}}</div>
                     <div>{{item.grade}}</div>
                 </div>
                 <div class="itemTools">
-                    <router-link :to="{ path:'/change', query: { id: item.id }}">
+                    <router-link :to="{ path:'/change', query: { id: item.resumeId }}">
                         更换面试官
                     </router-link>
                     <div @click="()=>{item.visible=!item.visible}">
@@ -24,8 +23,8 @@
                     </div>
                 </div>
                 <div class="experience" v-show="item.visible">
-                    <el-input type="textarea" v-model="item.experience" :rows="10"></el-input>
-                    <div @click="read(item.id)">已读</div>
+                    <el-input type="textarea" v-model="item.evaluation" :rows="10"></el-input>
+                    <div @click="read(item.resumeId)">已读</div>
                 </div>
             </div>
         </div>
@@ -42,7 +41,12 @@
 
     const router = useRouter()
     const mode = ref('')
-    const userList = ref()
+    const userList = ref([
+        { 
+            name: 'lzc',
+            grade: '大一'
+        }
+    ])
     const current = ref<number>(1)
     const size = ref<number>(5)
     const total = ref<number>(5)
@@ -78,35 +82,30 @@
         }
     }
     .container{
-        width: 700px;
+        width:80%;
         min-height: 100vh;
         padding-top: 20vh;
         margin:0 auto;
         .userItem{
-            position: relative;
+            display: flex;
             background-color:gainsboro;
-            padding:30px 0;
+            padding:20px;
             .itemInfo{
                 display: flex;
-                font-size: 25px;
                 div{
-                    margin-left: 60px;
+                    margin-right: 30px;
                 }
             }
             .itemTools{
                 display: flex;
-                position: absolute;
-                top:30px;
-                right: 0;
                 color:dodgerblue;
-                font-size: 20px;
+                margin-left:auto;
                 a{
                     color:dodgerblue;
                     margin-right: 20px;
                 }
                 div{
                     cursor: pointer;
-                    margin-right: 20px;
                 }
             }
             .experience{
@@ -125,10 +124,32 @@
             }
         }
         .el-pagination{
-            margin-top: 20px;
-            margin-left:50%;
-            transform: translateX(-50%);
+            margin:20px auto;
+            width:240px
         }
     }
-    
+    @media (min-width:0px){
+        .userItem{font-size:12px;}
+    }
+    @media (min-width: 320px){
+        .userItem{font-size:12px;}
+    }
+    @media (min-width: 340px){
+        .userItem{font-size:13px;}
+    }
+    @media (min-width: 360px){
+        .userItem{font-size:14px;}
+    }
+    @media (min-width: 380px){
+        .userItem{font-size:15px;}
+    }
+    @media (min-width: 460px){
+        .userItem{font-size:20px;}
+    }
+    @media (min-width: 535px){
+        .userItem{font-size:25px;}
+    }
+    @media (min-width: 800px){
+        .container{width:600px}
+    }
 </style>

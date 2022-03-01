@@ -66,3 +66,12 @@ export async function getResume(current:number, size:number):Promise<Data>{
     const { data } = await request.get(`/interviewer/${current}/${size}`)
     return data;
 }
+export async function getInterviewer(current:number, size:number):Promise<Data>{
+    const { data } = await request.get(`/administrator/interviewer/${current}/${size}`)
+    return data; 
+}
+export async function changeInterviewer(id:string, phoneNumber:number){
+    const { data } = await request.post('/interviewer/change', { id, phoneNumber })
+    if (data.code === 1) ElMessage.success('发送成功')
+    return data;
+}
