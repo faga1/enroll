@@ -49,7 +49,7 @@ import { useRoute } from 'vue-router';
 import { getInterviewer, changeInterviewer } from '../../commons/request/interviewer'
 import Container from '../../components/container.vue'
 
-const post = ref('前端')
+const post = ref<string>('前端')
 const state = ref(0)
 const route = useRoute()
 const current = ref(1)
@@ -81,6 +81,9 @@ function getInterviewerList(page = current.value, station = post.value, status =
     })
 }
 onMounted(() => {
+    if (route.query.station){
+        post.value = route.query.station as string
+    }
     getInterviewerList()
 })
 function send(phoneNumber: number){

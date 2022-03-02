@@ -14,7 +14,7 @@
                     <div>{{item.grade}}</div>
                 </div>
                 <div class="itemTools">
-                    <router-link :to="{ path:'/change', query: { id: item.resumeId }}">
+                    <router-link :to="{ path:'/change', query: { id: item.resumeId, station: item.station }}">
                         更换面试官
                     </router-link>
                     <div @click="()=>{item.visible=!item.visible}">
