@@ -66,6 +66,7 @@
         getResumeList(page)
     }
     function selStation(val:number){
+        mode.value = val
         getResumeList(undefined, val) 
     }
 </script>

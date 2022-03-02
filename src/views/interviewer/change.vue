@@ -2,21 +2,22 @@
     <div class="title">发送后将停止向您推送面试者消息</div>
     <Container>
         <template #header>
-            <div class="selector">
+            <div>
                 <div>当前岗位</div>
-                <el-select v-model="post">
+                <el-select v-model="post" @change="changeStation">
                     <el-option 
                     v-for="item in postList" 
                     :key='item.name' 
                     :label="item.name" 
                     :value="item.name"></el-option>
                 </el-select>
-                <el-select v-model="state">
+            </div>
+            <div>是否接收</div>
+                <el-select v-model="state" @change="changeState">
                     <el-option label="全部" :value="0"></el-option>
                     <el-option label="接收" :value="1"></el-option>
                     <el-option label="不接收" :value="2"></el-option>
                 </el-select>
-            </div>
         </template>
         <template #content>
             <el-table :data="interviewerList"  border >
@@ -62,16 +63,7 @@ const postList = reactive([
     { name: '产品' },
     { name: '运营' }
 ])
-const interviewerList = ref([
-    {
-        id: 1,
-        name: '张可豪',
-    },
-    {
-        id: 2,
-        name: '杜康'
-    }
-])
+const interviewerList = ref([])
 function getInterviewerList(page = current.value, station = post.value, status = state.value){
     getInterviewer(page, size.value, station, status).then((val) => {
         if (val.code === 1){
@@ -94,6 +86,14 @@ function send(phoneNumber: number){
 function pageChange(page:number){
     current.value = page;
     getInterviewerList(page)
+}
+function changeStation(val:string){
+    post.value = val
+    getInterviewerList(undefined, val)
+}
+function changeState(val:number){
+    state.value = val
+    getInterviewerList(undefined, undefined, val)
 }
 </script>
 <style lang="less" scoped>
