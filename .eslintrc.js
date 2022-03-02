@@ -24,6 +24,7 @@ module.exports = {
     'import/prefer-default-export':'off',
     "object-curly-newline":"off",
     'no-tabs':'off',
-    'quotes':'off'
+    'quotes':'off',
+    'max-len':'off'
   },
 };

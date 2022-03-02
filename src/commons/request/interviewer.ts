@@ -66,8 +66,8 @@ export async function getResume(current:number, size:number, status:number):Prom
     const { data } = await request.get(`/interviewer/${current}/${size}/${status}`)
     return data;
 }
-export async function getInterviewer(current:number, size:number):Promise<Data>{
-    const { data } = await request.get(`/administrator/interviewer/${current}/${size}`)
+export async function getInterviewer(current:number, size:number, station:string, status:number):Promise<Data>{
+    const { data } = await request.get(`/administrator/interviewer/${current}/${size}`, { params: { station, status } })
     return data; 
 }
 export async function changeInterviewer(id:string, phoneNumber:number){

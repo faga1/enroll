@@ -11,6 +11,11 @@
                     :label="item.name" 
                     :value="item.name"></el-option>
                 </el-select>
+                <el-select v-model="state">
+                    <el-option label="全部" :value="0"></el-option>
+                    <el-option label="接收" :value="1"></el-option>
+                    <el-option label="不接收" :value="2"></el-option>
+                </el-select>
             </div>
         </template>
         <template #content>
@@ -45,6 +50,7 @@ import { getInterviewer, changeInterviewer } from '../../commons/request/intervi
 import Container from '../../components/container.vue'
 
 const post = ref('前端')
+const state = ref(0)
 const route = useRoute()
 const current = ref(1)
 const total = ref(5)
@@ -66,8 +72,8 @@ const interviewerList = ref([
         name: '杜康'
     }
 ])
-function getInterviewerList(page = current.value){
-    getInterviewer(page, size.value).then((val) => {
+function getInterviewerList(page = current.value, station = post.value, status = state.value){
+    getInterviewer(page, size.value, station, status).then((val) => {
         if (val.code === 1){
             interviewerList.value = val.data.records
             total.value = val.data.total
