@@ -9,16 +9,18 @@
         </div>
         <div class="userList" >
             <div class="userItem" v-for="item in userList" :key="item.resumeId">
-                <div class="itemInfo">
+                <div class="show">
+                    <div class="itemInfo">
                     <div>{{item.name}}</div>
                     <div>{{item.grade}}</div>
-                </div>
-                <div class="itemTools">
-                    <router-link :to="{ path:'/change', query: { id: item.resumeId, station: item.station }}">
-                        更换面试官
-                    </router-link>
-                    <div @click="()=>{item.visible=!item.visible}">
-                        {{item.visible?'收起简历':'查看简历'}}
+                    </div>
+                    <div class="itemTools">
+                        <router-link :to="{ path:'/change', query: { id: item.resumeId, station: item.station }}">
+                            更换面试官
+                        </router-link>
+                        <div @click="()=>{item.visible=!item.visible}">
+                            {{item.visible?'收起简历':'查看简历'}}
+                        </div>
                     </div>
                 </div>
                 <div class="experience" v-show="item.visible">
@@ -88,28 +90,31 @@
         padding-top: 20vh;
         margin:0 auto;
         .userItem{
-            display: flex;
             background-color:gainsboro;
             padding:20px;
             margin-bottom: 50px;
-            .itemInfo{
+            .show{
                 display: flex;
-                div{
-                    margin-right: 30px;
+                .itemInfo{
+                    display: flex;
+                    div{
+                        margin-right: 30px;
+                    }
                 }
-            }
-            .itemTools{
-                display: flex;
-                color:dodgerblue;
-                margin-left:auto;
-                a{
+                .itemTools{
+                    display: flex;
                     color:dodgerblue;
-                    margin-right: 20px;
-                }
-                div{
-                    cursor: pointer;
+                    margin-left:auto;
+                    a{
+                        color:dodgerblue;
+                        margin-right: 20px;
+                    }
+                    div{
+                        cursor: pointer;
+                    }
                 }
             }
+            
             .experience{
                 width: 100%;
                 div{
