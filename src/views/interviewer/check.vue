@@ -35,7 +35,7 @@
 </template>
 <script setup lang="ts">
     import { onMounted, ref } from 'vue';
-    import { getResume } from '@/commons/request/interviewer';
+    import { getResume, readResume } from '@/commons/request/interviewer';
     import { useRouter } from 'vue-router';
 
     const router = useRouter()
@@ -58,8 +58,8 @@
     onMounted(() => {
         getResumeList()
     })
-    function read(id: number):void{
-        console.log(id);
+    function read(id: string):void{
+        readResume(id)
     }
     function pageChange(page:number){
         current.value = page;

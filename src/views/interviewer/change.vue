@@ -3,7 +3,7 @@
     <Container>
         <template #header>
             <div>
-                <div>当前岗位</div>
+                <span>当前岗位</span>
                 <el-select v-model="post" @change="changeStation">
                     <el-option 
                     v-for="item in postList" 
@@ -12,16 +12,19 @@
                     :value="item.name"></el-option>
                 </el-select>
             </div>
-            <div>是否接收</div>
+            <div>
+                <span>是否接收</span>
                 <el-select v-model="state" @change="changeState">
                     <el-option label="全部" :value="0"></el-option>
                     <el-option label="接收" :value="1"></el-option>
                     <el-option label="不接收" :value="2"></el-option>
                 </el-select>
+            </div>
+            
         </template>
         <template #content>
             <el-table :data="interviewerList"  border >
-                <el-table-column align="center" prop="id" label="序号" />
+                <el-table-column align="center" type="index" label="序号" />
                 <el-table-column align="center" prop="name" label="姓名" />
                 <el-table-column  align="center" label="操作" class="operations" >
                     <template #default="scope">
@@ -79,8 +82,8 @@ onMounted(() => {
     getInterviewerList()
 })
 function send(phoneNumber: number){
-    if (route.query.id){
-        changeInterviewer(route.query.id as string, phoneNumber)
+    if (typeof route.query.id === 'string'){
+        changeInterviewer(route.query.id, phoneNumber)
     }
 }
 function pageChange(page:number){
