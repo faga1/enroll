@@ -4,7 +4,7 @@
         <template #header>
             <div class="selector">
                 <div>当前岗位</div>
-                <el-select v-model="post" placeholder="岗位">
+                <el-select v-model="post">
                     <el-option 
                     v-for="item in postList" 
                     :key='item.name' 

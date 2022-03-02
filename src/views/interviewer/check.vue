@@ -90,6 +90,7 @@
             display: flex;
             background-color:gainsboro;
             padding:20px;
+            margin-bottom: 50px;
             .itemInfo{
                 display: flex;
                 div{
