@@ -62,8 +62,8 @@ request.interceptors.response.use((response) => {
     }
     return Promise.reject(error)
 })
-export async function getResume(current:number, size:number):Promise<Data>{
-    const { data } = await request.get(`/interviewer/${current}/${size}`)
+export async function getResume(current:number, size:number, status:number):Promise<Data>{
+    const { data } = await request.get(`/interviewer/${current}/${size}/${status}`)
     return data;
 }
 export async function getInterviewer(current:number, size:number):Promise<Data>{

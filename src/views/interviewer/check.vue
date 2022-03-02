@@ -1,11 +1,10 @@
 <template>
     <div class="container">
         <div class="header">
-            <el-select v-model="mode" placeholder="未读" >
-                <el-option label="未读" value="未读"></el-option>
-                <el-option label="已读" value="已读"></el-option>
-                <el-option label="未提交面评" value="未提交面评"></el-option>
-                <el-option label="已提交面评" value="已提交面评"></el-option>
+            <el-select v-model="mode" @change="selStation" >
+                <el-option label="未读" :value="1"></el-option>
+                <el-option label="已读" :value="2"></el-option>
+                <el-option label="已处理" :value="3"></el-option>
             </el-select>
         </div>
         <div class="userList" >
@@ -40,7 +39,7 @@
     import { useRouter } from 'vue-router';
 
     const router = useRouter()
-    const mode = ref('')
+    const mode = ref<number>(1)
     const userList = ref([
         { 
             name: 'lzc',
@@ -50,23 +49,24 @@
     const current = ref<number>(1)
     const size = ref<number>(5)
     const total = ref<number>(5)
-    function getResumeList(page:number = current.value){
-        getResume(page, size.value).then((val) => {
+    function getResumeList(page:number = current.value, station = mode.value){
+        getResume(page, size.value, station).then((val) => {
             userList.value = val.data.records
             total.value = val.data.total
         })
     }
     onMounted(() => {
-        getResume(1, 1).then((val) => {
-            userList.value = val.data.records
-        })
+        getResumeList()
     })
     function read(id: number):void{
         console.log(id);
     }
     function pageChange(page:number){
         current.value = page;
-       getResumeList(page)
+        getResumeList(page)
+    }
+    function selStation(val:number){
+        getResumeList(undefined, val) 
     }
 </script>
 <style lang="less" scoped>
