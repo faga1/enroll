@@ -76,7 +76,7 @@ export async function changeInterviewer(id:string, phoneNumber:number){
     return data;
 }
 export async function readResume(resumeId:string){
-    const { data } = await request.post('/interviewer/red', { resumeId })
+    const { data } = await request.get(`/interviewer/read/${resumeId}`)
     if (data.code === 1) ElMessage.success('发送成功')
     return data;
 }
