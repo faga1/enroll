@@ -25,7 +25,12 @@
                 </div>
                 <div class="experience" v-show="item.visible">
                     <el-input type="textarea" v-model="item.practice" :rows="10"></el-input>
-                    <div @click="read(item.resumeId)">已读</div>
+                    <div 
+                    @click="read(item.resumeId)" 
+                    :style="{
+                        color:item.status===1?'dodgerblue':'#ccc',
+                        cursor:item.status===1?'pointer':'auto'
+                    }">已读</div>
                 </div>
             </div>
         </div>
@@ -118,9 +123,7 @@
             .experience{
                 width: 100%;
                 div{
-                    color:dodgerblue;
                     text-align: center;
-                    cursor: pointer;
                     margin-top: 20px;
                 }
                 .el-textarea{
