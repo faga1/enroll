@@ -76,8 +76,9 @@ function getInterviewerList(page = current.value, station = post.value, status =
     })
 }
 onMounted(() => {
-    if (route.query.station){
-        post.value = route.query.station as string
+    console.log(111);
+    if (typeof route.query.station === 'string'){
+        post.value = route.query.station 
     }
     getInterviewerList()
 })

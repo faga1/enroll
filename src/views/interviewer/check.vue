@@ -28,8 +28,8 @@
                     <div 
                     @click="read(item.resumeId)" 
                     :style="{
-                        color:item.status===1?'dodgerblue':'#ccc',
-                        cursor:item.status===1?'pointer':'auto'
+                        color:mode===1?'dodgerblue':'#ccc',
+                        cursor:mode===1?'pointer':'auto'
                     }">已读</div>
                 </div>
             </div>
@@ -47,12 +47,7 @@
 
     const router = useRouter()
     const mode = ref<number>(1)
-    const userList = ref([
-        { 
-            name: 'lzc',
-            grade: '大一'
-        }
-    ])
+    const userList = ref([])
     const current = ref<number>(1)
     const size = ref<number>(5)
     const total = ref<number>(5)
@@ -66,7 +61,7 @@
         getResumeList()
     })
     function read(id: string):void{
-        readResume(id)
+        if (mode.value === 1) readResume(id)
     }
     function pageChange(page:number){
         current.value = page;

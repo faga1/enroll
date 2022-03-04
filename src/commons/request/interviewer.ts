@@ -48,7 +48,7 @@ request.interceptors.response.use((response) => {
 
     if (response.data.code !== "1"){
         if (response.data.code === "2" || response.data.code === "4"){
-            window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wwe0d87bd068758439&redirect_uri=${encodeURIComponent('http://weather-report.xdwizz.top/#/login')}&response_type=code&scope=snsapi_base&state=${window.location.hash.split('#')[1]}#wechat_redirect`
+            // window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wwe0d87bd068758439&redirect_uri=${encodeURIComponent('http://weather-report.xdwizz.top/#/login')}&response_type=code&scope=snsapi_base&state=${window.location.hash.split('#')[1]}#wechat_redirect`
         }
         return response;
     }
