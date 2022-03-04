@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="experience" v-show="item.visible">
-                    <el-input type="textarea" v-model="item.evaluation" :rows="10"></el-input>
+                    <el-input type="textarea" v-model="item.practice" :rows="10"></el-input>
                     <div @click="read(item.resumeId)">已读</div>
                 </div>
             </div>
