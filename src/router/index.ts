@@ -10,6 +10,7 @@ import Check from '../views/interviewer/check.vue'
 import Change from '../views/interviewer/change.vue'
 import Login from '../views/interviewer/login.vue'
 import Interviewer from '../views/interviewer.vue'
+import Read from '../views/interviewer/read.vue'
 
 const routes: Array<RouteRecordRaw> = [
   { path: '/', component: Welcome },
@@ -32,6 +33,7 @@ const routes: Array<RouteRecordRaw> = [
       { path: 'fill', component: Fill },
       { path: 'check', component: Check },
       { path: 'change', component: Change },
+      { path: 'read', component: Read }
     ]
   },
   { path: '/login', component: Login },

@@ -27,7 +27,7 @@
     prop="gender" 
     placeholder="请选择性别" 
     style="display: inline-block;width:33%">
-     <el-select v-model="form.gender" >
+     <el-select v-model="form.gender" placeholder="性别">
        <el-option label="男" :value='1'></el-option>
        <el-option label="女" :value="0"></el-option>
      </el-select>
@@ -35,9 +35,8 @@
    <el-form-item 
     label="年级" 
     prop="grade" 
-    placeholder="请选择年级" 
     style="display: inline-block;width:33%">
-     <el-select v-model="form.grade">
+     <el-select v-model="form.grade" placeholder="年级">
        <el-option
         v-for="item in gradeList"
         :value="item"
@@ -139,8 +138,8 @@ const form = reactive({
 })
 function beforeUpload(file:UploadFile){
   if (file){
-    fileList.value.push({ name: file.name })
-    console.log(fileList.value[0].name);
+    fileList.value = [{ name: file.name }]
+    proFile.value = file
   }
   return false;
 }

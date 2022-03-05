@@ -59,7 +59,6 @@ const route = useRoute()
 const current = ref(1)
 const total = ref(5)
 const size = ref(5)
-ElMessage.success(route.query.id as string)
 const postList = reactive([
     { name: '前端' },
     { name: '后端' },
