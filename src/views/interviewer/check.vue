@@ -36,7 +36,8 @@
         </div>
         <el-pagination 
             layout="prev, pager, next" 
-            :total="50" 
+            :page-size="size"
+            :total="total" 
             @current-change="pageChange"></el-pagination>
     </div>
 </template>
@@ -50,11 +51,13 @@
     const userList = ref([])
     const current = ref<number>(1)
     const size = ref<number>(5)
-    const total = ref<number>(5)
+    const total = ref(5)
     function getResumeList(page:number = current.value, station = mode.value){
         getResume(page, size.value, station).then((val) => {
-            userList.value = val.data.records
-            total.value = val.data.total
+            if (val.code === 1){
+                userList.value = val.data.records
+                total.value = parseInt(val.data.total, 10)
+            }
         })
     }
     onMounted(() => {
