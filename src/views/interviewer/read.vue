@@ -14,7 +14,7 @@ const route = useRoute()
 onMounted(() => {
   const loading = ElLoading.service({
     lock: true,
-    text: '正在授权...',
+    text: '已读...',
     background: 'rgba(0, 0, 0, 0.7)',
   })
   if (typeof route.query.resumeId === 'string'){
