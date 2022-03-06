@@ -21,9 +21,8 @@ async function send(isPass:boolean){
         const data = await sendInterviewee(evaluation.value, isPass, route.query.resumeId)
         if (data.code === 1){
             ElMessage.success('提交成功')
-        }
+        } 
     }
-    
 }
 </script>
 <style lang="less" scoped>
