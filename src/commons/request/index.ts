@@ -35,9 +35,8 @@ request.interceptors.request.use((config) => {
     return config
 })
 request.interceptors.response.use((response) => {
-    console.log(JSON.stringify(response));
     if (response.status !== 200){
-        // ElMessage.error(codeMessage[response.status])
+        ElMessage.error(codeMessage[response.status])
     }
     if (response.data.code !== 1){
         ElMessage.error(response.data.message)
