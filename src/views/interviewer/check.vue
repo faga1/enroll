@@ -48,7 +48,11 @@
 
     const router = useRouter()
     const mode = ref<number>(1)
-    const userList = ref([])
+    const userList = ref([{
+        name: 'lzc',
+        grade: '大一',
+        practice: 'huidian'
+    }])
     const current = ref<number>(1)
     const size = ref<number>(5)
     const total = ref(5)
@@ -126,7 +130,7 @@
                 }
                 .el-textarea{
                     display: block;
-                    width: 300px;
+                    width: 80%;
                     margin:40px auto 0;
                 }
             }
