@@ -19,14 +19,15 @@
       </div>
       
    </el-form-item>
-    <el-form-item label="姓名" prop="name" style="display: inline-block;width:33%">
+    <el-form-item class="formitem" label="姓名" prop="name" >
       <el-input v-model="form.name" ></el-input>
    </el-form-item>
    <el-form-item 
     label="性别" 
     prop="gender" 
     placeholder="请选择性别" 
-    style="display: inline-block;width:33%">
+    class="formitem"
+    >
      <el-select v-model="form.gender" placeholder="性别">
        <el-option label="男" :value='1'></el-option>
        <el-option label="女" :value="0"></el-option>
@@ -35,7 +36,8 @@
    <el-form-item 
     label="年级" 
     prop="grade" 
-    style="display: inline-block;width:33%">
+    class="formitem"
+    >
      <el-select v-model="form.grade" placeholder="年级">
        <el-option
         v-for="item in gradeList"
@@ -45,13 +47,13 @@
        ></el-option>
      </el-select>
    </el-form-item>
-   <el-form-item label="学院和专业" prop='major' style="display: inline-block;width:33%">
+   <el-form-item label="学院和专业" prop='major' class="formitem" >
       <el-input v-model="form.major"></el-input>
    </el-form-item>
-   <el-form-item label="联系电话" prop="phoneNumber" style="display: inline-block;width:33%">
+   <el-form-item label="联系电话" prop="phoneNumber" class="formitem">
       <el-input v-model="form.phoneNumber"></el-input>
    </el-form-item>
-    <el-form-item label="QQ" prop="qq" style="display: inline-block;width:33%">
+    <el-form-item label="QQ" prop="qq" class="formitem">
       <el-input v-model="form.qq" placeholder="非必填"></el-input>
    </el-form-item>
    <el-form-item label="是否有相关项目/实习经历" prop="hasPractice">
@@ -205,6 +207,13 @@ function onSubmit(){
 @media (max-width:500px){
   .el-form{
     width:90%;
+  }
+
+}
+@media (min-width:500px) {
+  .formitem{
+    display: inline-block!important;
+    width:33%;
   }
 }
 </style>
