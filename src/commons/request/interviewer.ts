@@ -70,7 +70,7 @@ export async function getInterviewer(current:number, size:number, station:string
 }
 export async function changeInterviewer(resumeId:string, phoneNumber:string){
     const { data } = await request.post('/interviewer/change', { resumeId, phoneNumber })
-    ElMessage.success(data.message)
+    if (data.code === 1) ElMessage.success('发送成功')
     return data;
 }
 export async function readResume(resumeId:string){
