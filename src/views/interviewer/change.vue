@@ -29,7 +29,7 @@
                 <el-table-column  align="center" label="操作" class="operations" >
                     <template #default="scope">
                         <span
-                        @click="send(scope.row.phoneNUmber)" 
+                        @click="send(scope.row.phoneNumber)" 
                         style="color:dodgerblue;cursor: pointer;">发送</span>
                     </template>
                    
@@ -75,13 +75,12 @@ function getInterviewerList(page = current.value, station = post.value, status =
     })
 }
 onMounted(() => {
-    console.log(111);
     if (typeof route.query.station === 'string'){
         post.value = route.query.station 
     }
     getInterviewerList()
 })
-function send(phoneNumber: number){
+function send(phoneNumber: string){
     if (typeof route.query.id === 'string'){
         changeInterviewer(route.query.id, phoneNumber)
     }
@@ -115,7 +114,7 @@ function changeState(val:number){
         align-items: center;
     }
     .el-select{
-        width:200px
+        width:50%
     }
 }
     @media (min-width:0px){

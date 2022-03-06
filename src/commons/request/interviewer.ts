@@ -68,9 +68,9 @@ export async function getInterviewer(current:number, size:number, station:string
     const { data } = await request.get(`/administrator/interviewer/${current}/${size}`, { params: { station, status } })
     return data; 
 }
-export async function changeInterviewer(id:string, phoneNumber:number){
-    const { data } = await request.post('/interviewer/change', { id, phoneNumber })
-    if (data.code === 1) ElMessage.success('发送成功')
+export async function changeInterviewer(resumeId:string, phoneNumber:string){
+    const { data } = await request.post('/interviewer/change', { resumeId, phoneNumber })
+    ElMessage.success(data.message)
     return data;
 }
 export async function readResume(resumeId:string){

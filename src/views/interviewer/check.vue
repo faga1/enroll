@@ -48,11 +48,7 @@
 
     const router = useRouter()
     const mode = ref<number>(1)
-    const userList = ref([{
-        name: 'lzc',
-        grade: '大一',
-        practice: 'huidian'
-    }])
+    const userList = ref([])
     const current = ref<number>(1)
     const size = ref<number>(5)
     const total = ref(5)
