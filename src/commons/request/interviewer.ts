@@ -31,7 +31,6 @@ const request = axios.create({
     baseURL: 'http://4c7705577i.picp.vip',
 })
 request.interceptors.request.use((config) => {
-    // console.log(config);
     const config1 = config
     if (window.localStorage.getItem('token') && config1.headers){
         config1.headers.Authorization = window.localStorage.getItem('token') as string;
@@ -40,7 +39,6 @@ request.interceptors.request.use((config) => {
     return config1
 })
 request.interceptors.response.use((response) => {
-    console.log(JSON.stringify(response));
     if (response.status !== 200){
         ElMessage.error(codeMessage[response.status])
         return response;
@@ -48,7 +46,7 @@ request.interceptors.response.use((response) => {
 
     if (response.data.code !== "1"){
         if (response.data.code === "2" || response.data.code === "4"){
-            window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wwe0d87bd068758439&redirect_uri=${encodeURIComponent('http://weather-report.xdwizz.top/#/login')}&response_type=code&scope=snsapi_base&state=${window.location.hash.split('#')[1]}#wechat_redirect`
+            // window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wwe0d87bd068758439&redirect_uri=${encodeURIComponent('http://weather-report.xdwizz.top/#/login')}&response_type=code&scope=snsapi_base&state=${window.location.hash.split('#')[1]}#wechat_redirect`
         }
         return response;
     }
