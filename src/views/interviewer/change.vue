@@ -81,6 +81,7 @@ onMounted(() => {
     getInterviewerList()
 })
 function send(phoneNumber: string){
+    console.log(phoneNumber);
     if (typeof route.query.id === 'string'){
         changeInterviewer(route.query.id, phoneNumber)
     }

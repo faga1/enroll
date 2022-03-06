@@ -78,3 +78,7 @@ export async function readResume(resumeId:string){
     if (data.code === 1) ElMessage.success('发送成功')
     return data;
 }
+export async function sendInterviewee(evaluation:string, isPass:boolean, id:any):Promise<Data>{
+    const { data } = await request.post('/interviewer', { evaluation, isPass, id })
+    return data
+}

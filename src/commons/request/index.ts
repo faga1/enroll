@@ -62,10 +62,7 @@ export async function sendResume(formData:any):Promise<Data>{
     const { data } = await request.post('/interviewee', formData)
     return data
 }
-export async function sendInterviewee(evaluation:string, isPass:boolean, id:any):Promise<Data>{
-    const { data } = await request.post('/interviewer', { evaluation, isPass, id })
-    return data
-}
+
 export async function interviewerLogin(code:string):Promise<Data>{
     const { data } = await request.get('/WXLogin', {
         params: { code }

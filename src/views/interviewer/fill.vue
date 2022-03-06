@@ -1,6 +1,6 @@
 <template>
     <div class="title">面评填写</div>
-    <div class="userInfo">姓名/年级/专业</div>
+    <div class="userInfo">{{route.query.name}}/{{route.query.grade}}/{{route.query.major}}</div>
     <el-input type="textarea" 
     :autosize="{ minRows: 10, maxRows: 15 }" 
     resize="none" 
@@ -12,7 +12,7 @@
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus';
-import { sendInterviewee } from '../../commons/request/index';
+import { sendInterviewee } from '../../commons/request/interviewer';
 
 const route = useRoute()
 const evaluation = ref('')
