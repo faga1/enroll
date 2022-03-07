@@ -28,7 +28,7 @@ const codeMessage:message = {
 	504: "网关超时。",
 };
 const request = axios.create({
-    baseURL: 'http://4c7705577i.picp.vip',
+    baseURL: 'https://orientation-system.be.wizzstudio.com',
 })
 request.interceptors.request.use((config) => {
     const config1 = config
