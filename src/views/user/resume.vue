@@ -194,9 +194,7 @@ function onSubmit(){
   .el-radio{
     margin-right: 150px;
   }
-  .interpolate{
-    width:100px;
-  }
+
   .el-button{
     width:100px;
     height: 40px;
@@ -208,12 +206,20 @@ function onSubmit(){
   .el-form{
     width:90%;
   }
+  .pushIn{
+    display: flex;
+    flex-direction: column;
+    margin:0;
+  }
 
 }
 @media (min-width:500px) {
   .formitem{
     display: inline-block!important;
     width:33%;
+  }
+  .interpolate{
+    width:100px;
   }
 }
 </style>
