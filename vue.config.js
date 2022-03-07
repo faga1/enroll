@@ -13,6 +13,15 @@ module.exports = {
         }),
       ],
     },
+    pwa: {
+      iconPaths: {
+        favicon32: 'favicon.ico',
+        favicon16: 'favicon.ico',
+        appleTouchIcon: 'favicon.ico',
+        maskIcon: 'favicon.ico',
+        msTileImage: 'favicon.ico'
+      }
+    },
     devServer: {
       port: 8080,
       // proxy: { // 设置代理
