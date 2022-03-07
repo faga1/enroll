@@ -70,15 +70,30 @@ function toDelivery(){
                 animation-delay:calc(0.2s*var(--i));
         }
         .el-button{
-            width:200px;
-            height: 80px;
-            border-radius: 40px;
-            font-size: 28px;
             font-weight: 600;
-            margin:20px auto 0;
+            margin:20px auto 20px;
             display: block;
         }
         
     }
+@media (max-width:500px){
+    .el-button{
+        height: 12vw;
+        border-radius: 6vw;
+        width:28vw;
+        font-size:4vw;
+    }
+    .animate__animated{
+        font-size:5vw;
+    }
+}
+@media (min-width:500px){
+    .el-button{
+        width:180px;
+        height: 70px;
+        border-radius: 40px;
+        font-size: 28px;
+    }
+}
     
 </style>
