@@ -28,7 +28,7 @@ const codeMessage:message = {
 	504: "网关超时。",
 };
 const request = axios.create({
-    baseURL: 'http://localhost:80',
+    baseURL: 'https://orientation-system.be.wizzstudio.com',
 })
 request.interceptors.request.use((config) => {
     console.log(JSON.stringify(config));
