@@ -8,7 +8,7 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 onMounted(() => {
     if (!window.localStorage.getItem('token')){
-        window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wwe0d87bd068758439&redirect_uri=${encodeURIComponent('http://weather-report.xdwizz.top/#/login')}&response_type=code&scope=snsapi_base&state=${route.path}#wechat_redirect`
+        window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wwe0d87bd068758439&redirect_uri=${encodeURIComponent('https://orientation-system.wizzstudio.com/#/interviewer/login')}&response_type=code&scope=snsapi_base&state=${route.path}#wechat_redirect`
     }
 })
 </script>
