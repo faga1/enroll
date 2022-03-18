@@ -8,6 +8,7 @@
             </el-select>
         </div>
         <div class="userList" >
+            <el-empty :image-size="200" v-if="!userList.length" />
             <div class="userItem" v-for="item in userList" :key="item.resumeId">
                 <div class="show">
                     <div class="itemInfo">
