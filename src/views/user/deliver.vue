@@ -69,8 +69,8 @@
         margin-bottom: 50px;
        .stationItem-header{
             display: flex;
-            color:#ffffff;
             position: relative;
+            font-weight: 600;
             .requireBtn{
                 margin-left:auto;
                 

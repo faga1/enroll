@@ -15,7 +15,7 @@
       </el-radio-group>
       <div class="pushIn">
         <span class="interpolate-text">内推人</span>
-        <el-input class="interpolate" v-model="form.pushInperson"></el-input>
+        <el-input class="interpolate" placeholder="非必填" v-model="form.pushInperson"></el-input>
       </div>
       
    </el-form-item>
@@ -171,11 +171,6 @@ function onSubmit(){
   font-size: 30px;
   font-weight: 600;
   text-align: center;
-}
-.pushIn{
-  display: inline-block;
-  margin-left:auto;
-
 }
 
 .el-form{
