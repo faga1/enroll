@@ -27,6 +27,7 @@ onMounted(() => {
   })
   const code = getQueryString('code')
   const route = getQueryString('state')
+  console.log('route', route);
   if (typeof code === 'string'){
     interviewerLogin(code).then((val) => {
       if (val.code === 1 && val.data){
