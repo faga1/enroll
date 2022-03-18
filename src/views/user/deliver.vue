@@ -18,6 +18,7 @@
                 <el-input type="textarea" 
                     disabled
                     class="requireContent"
+                    :autosize="{minRows: 5,maxRows: 8}"
                     v-model="item.desc"></el-input>
             </div>
         </div>
