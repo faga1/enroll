@@ -134,7 +134,8 @@
         }
         .el-pagination{
             margin:20px auto;
-            width:240px
+            width:240px;
+            justify-content: center;
         }
     }
     @media (min-width:0px){
