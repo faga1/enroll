@@ -85,16 +85,21 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import { Plus } from '@element-plus/icons-vue'
 import type { UploadFile } from 'element-plus/es/components/upload/src/upload.type'
 import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { sendResume } from '../../commons/request'
 
-const router = useRouter()
-
 const route = useRoute()
+const router = useRouter()
+onMounted(() => {
+  if (typeof route.query.station !== 'string'){
+    ElMessage.error('请选择岗位')
+    router.push('/user/delivery')
+  }
+})
 const gradeList :string[] = ['大一', '大二', '大三', '大四', '研一', '研二', '研三']
 const formRules = {
   messageFrom: [
@@ -148,20 +153,15 @@ function beforeUpload(file:UploadFile){
 function onSubmit(){
   formRef.value.validate((valid: boolean) => {
     if (valid){
-      if (!route.query.station){
-        ElMessage.error('参数异常,请重新投递')
-        router.push('/user/delivery')
-      } else {
-        const formData = new FormData()
-        const json = JSON.stringify({ ...form, station: route.query.station as string })
-        formData.append('json', new Blob([json], { type: "application/json" }))
-        if (proFile.value) formData.append('file', proFile.value)
-        sendResume(formData).then((val) => {
-          if (val.code === 1){
-            router.push('/success')
-          }
-        })
-      }
+      const formData = new FormData()
+      const json = JSON.stringify({ ...form, station: route.query.station as string })
+      formData.append('json', new Blob([json], { type: "application/json" }))
+      if (proFile.value) formData.append('file', proFile.value)
+      sendResume(formData).then((val) => {
+        if (val.code === 1){
+          router.push('/success')
+        }
+      })
     }
   })
 }

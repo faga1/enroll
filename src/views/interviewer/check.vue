@@ -25,6 +25,7 @@
                     </div>
                 </div>
                 <div class="experience" v-show="item.visible">
+                    <div>{{item.major}}/{{item.phoneNumber}}<a v-if="item.fileURL" :href="item.fileURL">/作品</a></div>
                     <el-input type="textarea" v-model="item.practice" :rows="10"></el-input>
                     <div 
                     @click="read(item.resumeId)" 
