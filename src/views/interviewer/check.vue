@@ -126,6 +126,7 @@
                 width: 100%;
                 padding-top:40px;
                 .info{
+                    text-align: center;
                     font-size: 18px;
                 }
                 .read{
@@ -135,7 +136,7 @@
                 .el-textarea{
                     display: block;
                     width: 80%;
-                    margin:0 auto;
+                    margin:20px auto 0;
                 }
             }
         }
