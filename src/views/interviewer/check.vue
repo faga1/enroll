@@ -25,9 +25,10 @@
                     </div>
                 </div>
                 <div class="experience" v-show="item.visible">
-                    <div>{{item.major}}/{{item.phoneNumber}}<a v-if="item.fileURL" :href="item.fileURL">/作品</a></div>
+                    <div class="info">{{item.major}}/{{item.phoneNumber}}<a v-if="item.fileURL" :href="item.fileURL">/作品</a></div>
                     <el-input type="textarea" v-model="item.practice" :rows="10"></el-input>
                     <div 
+                    class="read"
                     @click="read(item.resumeId)" 
                     :style="{
                         color:mode===1?'dodgerblue':'#ccc',
@@ -123,14 +124,18 @@
             
             .experience{
                 width: 100%;
-                div{
+                padding-top:40px;
+                .info{
+                    font-size: 18px;
+                }
+                .read{
                     text-align: center;
                     margin-top: 20px;
                 }
                 .el-textarea{
                     display: block;
                     width: 80%;
-                    margin:40px auto 0;
+                    margin:0 auto;
                 }
             }
         }
