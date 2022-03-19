@@ -128,6 +128,10 @@
                 .info{
                     text-align: center;
                     font-size: 18px;
+                    a{
+                        color:dodgerblue;
+                        cursor: pointer;
+                    }
                 }
                 .read{
                     text-align: center;
