@@ -3,7 +3,7 @@
     <Container>
         <template #header>
             <div>
-                <span>当前岗位</span>
+                <span>岗位</span>
                 <el-select v-model="post" @change="changeStation">
                     <el-option 
                     v-for="item in postList" 
@@ -13,7 +13,7 @@
                 </el-select>
             </div>
             <div>
-                <span>是否接收</span>
+                <span>接收</span>
                 <el-select v-model="state" @change="changeState">
                     <el-option label="全部" :value="0"></el-option>
                     <el-option label="接收" :value="1"></el-option>

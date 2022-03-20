@@ -16,7 +16,6 @@
 .container{
     width: 80%;
     margin:100px auto;
-    background-color: rgb(242,242,242);
     .header{
         width: 95%;
         height: 60px;
@@ -28,7 +27,7 @@
     .content{
         width: 95%;
         margin:0 auto; 
-        padding:30px;
+        padding:30px 0;
         border-bottom:1px solid #000000;
         border-top:1px solid #000000;
     }
