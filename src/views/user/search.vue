@@ -1,5 +1,4 @@
 <template>
-    <div class="title">状态查询</div>
     <div class="search">
         <div class="label">输入投递时留下的手机号</div>
         <el-input v-model="phoneNumber"></el-input>
@@ -37,14 +36,9 @@ async function getStatus(Number: string){
 
 </script>
 <style lang="less" scoped>
-.title{
-    font-size: 30px;
-    font-weight: 600;
-    text-align: center;
-}
 .search{
     width:50vw;
-    margin:100px auto;
+    margin:30vh auto;
     
     .label{
         text-align: center;

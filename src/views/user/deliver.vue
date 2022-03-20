@@ -1,7 +1,7 @@
 <template>
     <div class="deliver">
         <div class="title">为之工作室365天持续招新</div>
-        <div class="stationItem"  v-for="(item,index) in stationList" :key="item.name">
+        <div class="stationItem"  v-for="(item,index) in stationList" :key="item.name" >
             <div class="stationItem-header">
                 <span>{{item.name}}</span>
                 <el-button 
@@ -65,17 +65,21 @@
         width:80%;
         margin: 0 auto;
         padding:20px;
-        background-color:gainsboro;
+        background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+        border-radius: 4px;
         margin-bottom: 50px;
        .stationItem-header{
             display: flex;
             position: relative;
             font-weight: 600;
+            color: #ffffff;
             .requireBtn{
                 margin-left:auto;
-                
             }
             
+       }
+       .el-button{
+           color:#666;
        }
        .stationRequire{
            transition: max-height .5s;
