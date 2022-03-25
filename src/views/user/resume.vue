@@ -15,7 +15,7 @@
       </el-radio-group>
       <div class="pushIn">
         <span class="interpolate-text">内推人</span>
-        <el-input class="interpolate" placeholder="非必填" v-model="form.pushInperson"></el-input>
+        <el-input class="interpolate" placeholder="非必填" v-model="form.pushInMan"></el-input>
       </div>
       
    </el-form-item>
@@ -133,7 +133,7 @@ const fileList = ref([])
 const formRef = ref()
 const form = reactive({
   messageFrom: '',
-  pushInperson: '',
+  pushInMan: '',
   name: '',
   gender: '',
   grade: '',
@@ -155,6 +155,7 @@ function onSubmit(){
     if (valid){
       const formData = new FormData()
       const json = JSON.stringify({ ...form, station: route.query.station as string })
+      console.log(json);
       formData.append('json', new Blob([json], { type: "application/json" }))
       if (proFile.value) formData.append('file', proFile.value)
       sendResume(formData).then((val) => {
@@ -162,6 +163,7 @@ function onSubmit(){
           router.push('/success')
         }
       })
+      console.log(formData);
     }
   })
 }
