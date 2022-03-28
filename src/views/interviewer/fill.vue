@@ -9,11 +9,14 @@
     <el-button type="danger" @click="send(false)">不通过</el-button>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus';
-import { sendInterviewee } from '../../commons/request/interviewer';
+import { sendInterviewee, getResume } from '../../commons/request/interviewer';
 
+onMounted(() => {
+    getResume(1, 1, 1)
+})
 const route = useRoute()
 const evaluation = ref('')
 async function send(isPass:boolean){
