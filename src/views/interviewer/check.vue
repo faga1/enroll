@@ -32,13 +32,13 @@
                             更换面试官
                         </router-link>
                  
-                                            <div 
+                    <router-link 
                     class="read"
-                    @click="read(item.resumeId)" 
+                    :to="{path:'/fill',query:{id:item.resumeId,name:item.name,grade:item.grade,major:item.major}}"
                     :style="{
                         color:mode===1?'8896b3':'#ccc',
                         cursor:mode===1?'pointer':'auto'
-                    }">标记已读</div>
+                    }">填写面评</router-link>
                     </div>
                     </div>
 
