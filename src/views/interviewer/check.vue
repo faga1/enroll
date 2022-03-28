@@ -59,7 +59,7 @@
 
     const router = useRouter()
     const mode = ref<number>(1)
-    const userList = ref([])
+    const userList = ref([]) 
     const current = ref<number>(1)
     const size = ref<number>(5)
     const total = ref(5)
