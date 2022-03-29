@@ -1,6 +1,6 @@
 <template>
     <div class="title">面评填写</div>
-    <div class="userInfo">{{route.query.name}}/{{route.query.grade}}/{{route.query.major}}</div>
+    <div class="userInfo">{{userInfo.name}}/{{userInfo.grade}}/{{userInfo.major}}</div>
     <el-input type="textarea" 
     :autosize="{ minRows: 10, maxRows: 15 }" 
     resize="none" 
@@ -12,14 +12,22 @@
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus';
-import { sendInterviewee, checkToken } from '../../commons/request/interviewer';
+import { sendInterviewee, getResumeInfo } from '../../commons/request/interviewer';
 
-onMounted(() => {
-    checkToken()
-})
 const route = useRoute()
+const userInfo = ref()
+onMounted(() => {
+    if (typeof route.query.resumeId === 'string'){
+        getResumeInfo(route.query.resumeId).then((val) => {
+            if (val.code === 1){
+                userInfo.value = val.data;
+            }
+        })
+    }
+})
 const evaluation = ref('')
 async function send(isPass:boolean){
+    if (typeof route.query.resumeId !== 'string') return
     const data = await sendInterviewee(evaluation.value, isPass, route.query.resumeId)
     if (data.code === 1){
         ElMessage.success('提交成功')
