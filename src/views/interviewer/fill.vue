@@ -12,10 +12,10 @@
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus';
-import { sendInterviewee, getResume } from '../../commons/request/interviewer';
+import { sendInterviewee, checkToken } from '../../commons/request/interviewer';
 
 onMounted(() => {
-    getResume(1, 1, 1)
+    checkToken()
 })
 const route = useRoute()
 const evaluation = ref('')

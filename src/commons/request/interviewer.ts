@@ -82,3 +82,6 @@ export async function sendInterviewee(evaluation:string, pass:boolean, resumeId:
     const { data } = await request.post('/interviewer', { evaluation, pass, resumeId })
     return data
 }
+export async function checkToken(){
+    await request.get('/interviewer')
+}
