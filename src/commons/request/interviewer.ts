@@ -83,6 +83,6 @@ export async function sendInterviewee(evaluation:string, pass:boolean, resumeId:
     return data
 }
 export async function getResumeInfo(resumeId:string){
-    const { data } = await request.get(`/interviewer/${resumeId}`)
+    const { data } = await request.get(`/interviewer/resumeData/${resumeId}`,)
     return data;
 }
