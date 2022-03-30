@@ -34,7 +34,7 @@
                  
                     <router-link 
                     class="read"
-                    :to="{path:'/fill',query:{id:item.resumeId,name:item.name,grade:item.grade,major:item.major}}"
+                    :to="{path:'/fill',query:{resumeId:item.resumeId}}"
                     :style="{
                         color:mode===1?'8896b3':'#ccc',
                         cursor:mode===1?'pointer':'auto'
